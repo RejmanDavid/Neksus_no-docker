@@ -7,5 +7,7 @@ Instrukce
 - localhost:8080
   - /hello
     - jednoduchej hello world test
+    - ?name=...
+      - GET request
   - /db
     - napojí na databázi a vypíše prvního zaměstnance
