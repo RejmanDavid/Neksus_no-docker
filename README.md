@@ -1,5 +1,9 @@
 # Neksus_no-docker
 
+Před spuštěním
+- zkontrolovat si připojení na ora1.uhk.cz
+- pokud ping neuspěje, zkontroluj si připojení školní vpn
+
 Instrukce
 - aktualizuj maven dependencies
 - spusť src/main/java/com.example.demo/DemoApplication
