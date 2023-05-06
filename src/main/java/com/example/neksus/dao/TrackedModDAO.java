@@ -12,12 +12,6 @@ import java.util.List;
 public class TrackedModDAO {
 
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public TrackedModDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     private final RowMapper<TrackedMod> trackedModRowMapper = (resultSet, i) -> {
         TrackedMod trackedMod = new TrackedMod();
         trackedMod.setId(resultSet.getLong("id"));
@@ -25,6 +19,11 @@ public class TrackedModDAO {
         trackedMod.setModId(resultSet.getLong("mod_id"));
         return trackedMod;
     };
+
+    @Autowired
+    public TrackedModDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public boolean insertTrackedMod(TrackedMod trackedMod) {
         String sql = "INSERT INTO tracked_mod (user_id, mod_id) VALUES (?, ?)";

@@ -12,12 +12,6 @@ import java.util.List;
 public class EmployeeDAO {
 
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public EmployeeDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     private final RowMapper<Employee> employeeRowMapper = (rs, rowNum) -> {
         Employee employee = new Employee();
         employee.setFirstName(rs.getString("FIRST_NAME"));
@@ -30,6 +24,11 @@ public class EmployeeDAO {
         employee.setPostalCode(rs.getString("POSTAL_CODE"));
         return employee;
     };
+
+    @Autowired
+    public EmployeeDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Employee> getAllEmployees() {
         String sql = "SELECT * FROM EMPLOYEE";

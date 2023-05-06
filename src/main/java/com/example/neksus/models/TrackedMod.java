@@ -10,21 +10,21 @@ public class TrackedMod {
         return id;
     }
 
-    public Long getModId() {
-        return modId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
     // Setters
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Long getModId() {
+        return modId;
+    }
+
     public void setModId(Long modId) {
         this.modId = modId;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public void setUserId(Long userId) {

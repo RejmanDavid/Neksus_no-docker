@@ -1,7 +1,6 @@
 package com.example.neksus.dao;
 
 import com.example.neksus.models.Game;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -12,11 +11,6 @@ import java.util.List;
 public class GameDAO {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public GameDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     private final RowMapper<Game> gameRowMapper = (rs, rowNum) -> {
         Game game = new Game();
         game.setId(rs.getLong("GAME_ID"));
@@ -26,6 +20,10 @@ public class GameDAO {
         game.setDeveloper(rs.getString("DEVELOPER"));
         return game;
     };
+
+    public GameDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Game> getAllGames() {
         String sql = "SELECT * FROM GAME";

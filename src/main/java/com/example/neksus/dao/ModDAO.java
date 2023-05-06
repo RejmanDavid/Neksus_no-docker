@@ -12,12 +12,6 @@ import java.util.List;
 public class ModDAO {
 
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public ModDAO(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
     private RowMapper<Mod> modRowMapper = (rs, rowNum) -> {
         Mod mod = new Mod();
         mod.setModId(rs.getLong("MOD_ID"));
@@ -30,6 +24,11 @@ public class ModDAO {
         mod.setTrackCount(rs.getLong("TRACK_COUNT"));
         return mod;
     };
+
+    @Autowired
+    public ModDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Mod> getAllMods() {
         String sql = "SELECT * FROM MOD";
