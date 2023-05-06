@@ -12,44 +12,44 @@ import java.util.List;
 public class CommentDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    private RowMapper<Comment> commentRowMapper = (rs, rowNum) -> {
+        Comment comment = new Comment();
+        comment.setCommentId(rs.getLong("COMMENT_ID"));
+        comment.setUserId(rs.getString("USERS_ID"));
+        comment.setModId(rs.getLong("MOD_ID"));
+        comment.setCommentText(rs.getString("COMMENT_TEXT"));
+        comment.setDateCommented(rs.getDate("DATE_COMMENTED"));
+        comment.setParentComment(rs.getLong("PARENT_COMMENT"));
+        return comment;
+    };
 
     @Autowired
     public CommentDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private RowMapper<Comment> commentRowMapper = (rs, rowNum) -> {
-        Comment comment = new Comment();
-        comment.setId(rs.getLong("id"));
-        comment.setUserId(rs.getLong("user_id"));
-        comment.setModId(rs.getLong("mod_id"));
-        comment.setContent(rs.getString("content"));
-        comment.setDateCreated(rs.getDate("date_created"));
-        return comment;
-    };
-
     public List<Comment> getAllComments() {
         String sql = "SELECT * FROM COMMENTS";
         return jdbcTemplate.query(sql, commentRowMapper);
     }
 
-    public Comment getCommentById(Long id) {
+    public Comment getCommentById(Long commentId) {
         String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, commentRowMapper);
+        return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, commentRowMapper);
     }
 
     public void updateComment(Comment comment) {
-        String sql = "UPDATE COMMENTS SET USERS_ID = ?, MOD_ID = ?, COMMENT_TEXT = ?, DATE_COMMENTED = ? WHERE COMMENT_ID = ?";
-        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getContent(), comment.getDateCreated(), comment.getId());
+        String sql = "UPDATE COMMENTS SET USERS_ID = ?, MOD_ID = ?, COMMENT_TEXT = ?, DATE_COMMENTED = ?, PARENT_COMMENT = ? WHERE COMMENT_ID = ?";
+        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment(), comment.getCommentId());
     }
 
     public void insertComment(Comment comment) {
-        String sql = "INSERT INTO COMMENTS (USERS_ID, MOD_ID, COMMENT_TEXT, DATE_COMMENTED) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getContent(), comment.getDateCreated());
+        String sql = "INSERT INTO COMMENTS (COMMENT_ID, USERS_ID, MOD_ID, COMMENT_TEXT, DATE_COMMENTED, PARENT_COMMENT) VALUES (COMMENTS_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment());
     }
 
-    public void deleteComment(Long id) {
+    public void deleteComment(Long commentId) {
         String sql = "DELETE FROM COMMENTS WHERE COMMENT_ID = ?";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, commentId);
     }
 }

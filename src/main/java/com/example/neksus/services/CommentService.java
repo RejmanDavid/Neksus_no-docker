@@ -21,8 +21,8 @@ public class CommentService {
         return commentDAO.getAllComments();
     }
 
-    public Comment getCommentById(Long id) {
-        return commentDAO.getCommentById(id);
+    public Comment getCommentById(Long commentId) {
+        return commentDAO.getCommentById(commentId);
     }
 
     public boolean addComment(Comment comment) {
@@ -35,8 +35,8 @@ public class CommentService {
         return true;
     }
 
-    public boolean deleteComment(Long id) {
-        commentDAO.deleteComment(id);
+    public boolean deleteComment(Long commentId) {
+        commentDAO.deleteComment(commentId);
         return true;
     }
 }

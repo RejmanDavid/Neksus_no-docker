@@ -3,52 +3,60 @@ package com.example.neksus.models;
 import java.util.Date;
 
 public class Comment {
-    private Long id;
-    private Long userId;
+    private Long commentId;
+    private String userId;
     private Long modId;
-    private String content;
-    private Date dateCreated;
+    private String commentText;
+    private Date dateCommented;
+    private Long parentComment;
 
     // Getters
-    public Long getId() {
-        return id;
+    public Long getCommentId() {
+        return commentId;
     }
 
-    public Long getUserId() {
+    // Setters
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getUserId() {
         return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Long getModId() {
         return modId;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    // Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public void setModId(Long modId) {
         this.modId = modId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
+
+    public Date getDateCommented() {
+        return dateCommented;
+    }
+
+    public void setDateCommented(Date dateCommented) {
+        this.dateCommented = dateCommented;
+    }
+
+    public Long getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(Long parentComment) {
+        this.parentComment = parentComment;
     }
 }
-
