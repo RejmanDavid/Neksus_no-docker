@@ -3,62 +3,78 @@ package com.example.neksus.models;
 import java.util.Date;
 
 public class Mod {
-    private Long id;
-    private String name;
+    private Long modId;
+    private String modName;
     private String description;
-    private Long authorId;
+    private String author;
     private Long gameId;
-
-    private Date dateCreated;
+    private Date datePublished;
+    private String thumbnailImageId;
+    private Long trackCount;
 
     // Getters
-    public Long getId() {
-        return id;
+    public Long getModId() {
+        return modId;
     }
 
-    public String getName() {
-        return name;
+    public String getModName() {
+        return modName;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
     public Long getGameId() {
         return gameId;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getDatePublished() {
+        return datePublished;
     }
 
+    public String getThumbnailImageId() {
+        return thumbnailImageId;
+    }
+
+    public Long getTrackCount() {
+        return trackCount;
+    }
 
     // Setters
-    public void setId(Long id) {
-        this.id = id;
+    public void setModId(Long modId) {
+        this.modId = modId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModName(String modName) {
+        this.modName = modName;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void setGameId(Long gameId) {
         this.gameId = gameId;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDatePublished(Date datePublished) {
+        this.datePublished = datePublished;
+    }
+
+    public void setThumbnailImageId(String thumbnailImageId) {
+        this.thumbnailImageId = thumbnailImageId;
+    }
+
+    public void setTrackCount(Long trackCount) {
+        this.trackCount = trackCount;
     }
 }

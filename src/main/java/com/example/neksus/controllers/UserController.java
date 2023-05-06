@@ -22,9 +22,9 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.findById(id);
+    @GetMapping("/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        User user = userService.findByEmail(email);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
@@ -42,9 +42,9 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id);
+    @PutMapping("/{email}")
+    public ResponseEntity<Void> updateUser(@PathVariable String email, @RequestBody User user) {
+        user.setEmail(email);
         try {
             boolean updated = userService.update(user);
             if (updated) {
@@ -57,9 +57,9 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        boolean deleted = userService.delete(id);
+    @DeleteMapping("/{email}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String email) {
+        boolean deleted = userService.delete(email);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

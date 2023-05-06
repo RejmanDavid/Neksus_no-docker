@@ -1,17 +1,42 @@
 package com.example.neksus.services;
 
+import com.example.neksus.dao.CommentDAO;
 import com.example.neksus.models.Comment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface CommentService {
-    List<Comment> getAllComments();
+@Service
+public class CommentService {
 
-    Comment getCommentById(Long id);
+    private final CommentDAO commentDAO;
 
-    boolean addComment(Comment comment);
+    @Autowired
+    public CommentService(CommentDAO commentDAO) {
+        this.commentDAO = commentDAO;
+    }
 
-    boolean updateComment(Comment comment);
+    public List<Comment> getAllComments() {
+        return commentDAO.getAllComments();
+    }
 
-    boolean deleteComment(Long id);
+    public Comment getCommentById(Long id) {
+        return commentDAO.getCommentById(id);
+    }
+
+    public boolean addComment(Comment comment) {
+        commentDAO.insertComment(comment);
+        return true;
+    }
+
+    public boolean updateComment(Comment comment) {
+        commentDAO.updateComment(comment);
+        return true;
+    }
+
+    public boolean deleteComment(Long id) {
+        commentDAO.deleteComment(id);
+        return true;
+    }
 }
