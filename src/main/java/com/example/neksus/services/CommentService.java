@@ -3,6 +3,7 @@ package com.example.neksus.services;
 import com.example.neksus.dao.CommentDAO;
 import com.example.neksus.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,18 +26,25 @@ public class CommentService {
         return commentDAO.getCommentById(commentId);
     }
 
-    public boolean addComment(Comment comment) {
-        commentDAO.insertComment(comment);
-        return true;
+    public int addComment(@NonNull Comment comment) {
+        if (!isValidComment(comment)) {
+            throw new IllegalArgumentException("Invalid comment object");
+        }
+        return commentDAO.insertComment(comment);
     }
 
-    public boolean updateComment(Comment comment) {
-        commentDAO.updateComment(comment);
-        return true;
+    public int updateComment(@NonNull Comment comment) {
+        if (!isValidComment(comment)) {
+            throw new IllegalArgumentException("Invalid comment object");
+        }
+        return commentDAO.updateComment(comment);
     }
 
-    public boolean deleteComment(Long commentId) {
-        commentDAO.deleteComment(commentId);
-        return true;
+    public int deleteComment(Long commentId) {
+        return commentDAO.deleteComment(commentId);
+    }
+
+    private boolean isValidComment(Comment comment) {
+        return comment.getCommentText() != null && !comment.getCommentText().trim().isEmpty();
     }
 }

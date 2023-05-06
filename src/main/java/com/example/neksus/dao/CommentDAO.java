@@ -4,6 +4,7 @@ import com.example.neksus.models.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,18 +39,18 @@ public class CommentDAO {
         return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, commentRowMapper);
     }
 
-    public void updateComment(Comment comment) {
+    public int updateComment(@NonNull Comment comment) {
         String sql = "UPDATE COMMENTS SET USERS_ID = ?, MOD_ID = ?, COMMENT_TEXT = ?, DATE_COMMENTED = ?, PARENT_COMMENT = ? WHERE COMMENT_ID = ?";
-        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment(), comment.getCommentId());
+        return jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment(), comment.getCommentId());
     }
 
-    public void insertComment(Comment comment) {
+    public int insertComment(@NonNull Comment comment) {
         String sql = "INSERT INTO COMMENTS (COMMENT_ID, USERS_ID, MOD_ID, COMMENT_TEXT, DATE_COMMENTED, PARENT_COMMENT) VALUES (COMMENTS_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment());
+        return jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment());
     }
 
-    public void deleteComment(Long commentId) {
+    public int deleteComment(Long commentId) {
         String sql = "DELETE FROM COMMENTS WHERE COMMENT_ID = ?";
-        jdbcTemplate.update(sql, commentId);
+        return jdbcTemplate.update(sql, commentId);
     }
 }
