@@ -26,8 +26,8 @@ public class TrackedModDAO {
     }
 
     public boolean insertTrackedMod(TrackedMod trackedMod) {
-        String sql = "INSERT INTO tracked_mod (user_id, mod_id) VALUES (?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, trackedMod.getUserId(), trackedMod.getModId());
+        String sql = "INSERT INTO tracked_mod (TRACKED_MOD_ID, user_id, mod_id) VALUES (?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, trackedMod.getId(), trackedMod.getUserId(), trackedMod.getModId());
         return rowsAffected > 0;
     }
 
@@ -52,13 +52,11 @@ public class TrackedModDAO {
 
     public List<TrackedMod> getAllTrackedMods() {
         String sql = "SELECT * FROM tracked_mod";
-        List<TrackedMod> trackedMods = jdbcTemplate.query(sql, trackedModRowMapper);
-        return trackedMods;
+        return jdbcTemplate.query(sql, trackedModRowMapper);
     }
 
     public TrackedMod getTrackedModById(Long id) {
         String sql = "SELECT * FROM tracked_mod WHERE TRACKED_MOD_ID = ?";
-        TrackedMod trackedMod = jdbcTemplate.queryForObject(sql, trackedModRowMapper, id);
-        return trackedMod;
+        return jdbcTemplate.queryForObject(sql, trackedModRowMapper, id);
     }
 }

@@ -37,7 +37,7 @@ public class EmployeeDAO {
 
     public Employee getEmployeeByPhoneNumber(String phoneNumber) {
         String sql = "SELECT * FROM EMPLOYEE WHERE PHONE_NUMBER = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{phoneNumber}, employeeRowMapper);
+        return jdbcTemplate.queryForObject(sql, employeeRowMapper, phoneNumber);
     }
 
     public boolean insertEmployee(Employee employee) {

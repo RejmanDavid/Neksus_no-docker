@@ -12,7 +12,7 @@ import java.util.List;
 public class ModDAO {
 
     private final JdbcTemplate jdbcTemplate;
-    private RowMapper<Mod> modRowMapper = (rs, rowNum) -> {
+    private final RowMapper<Mod> modRowMapper = (rs, rowNum) -> {
         Mod mod = new Mod();
         mod.setModId(rs.getLong("MOD_ID"));
         mod.setModName(rs.getString("MOD_NAME"));
@@ -37,12 +37,12 @@ public class ModDAO {
 
     public Mod getModById(long modId) {
         String sql = "SELECT * FROM MOD WHERE MOD_ID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{modId}, modRowMapper);
+        return jdbcTemplate.queryForObject(sql, modRowMapper, modId);
     }
 
     public boolean insertMod(Mod mod) {
-        String sql = "INSERT INTO MOD (MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), mod.getThumbnailImageId(), mod.getTrackCount());
+        String sql = "INSERT INTO MOD (MOD_ID, MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), mod.getThumbnailImageId(), mod.getTrackCount());
         return rowsAffected > 0;
     }
 

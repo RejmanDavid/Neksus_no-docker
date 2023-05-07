@@ -13,7 +13,7 @@ import java.util.List;
 public class CommentDAO {
 
     private final JdbcTemplate jdbcTemplate;
-    private RowMapper<Comment> commentRowMapper = (rs, rowNum) -> {
+    private final RowMapper<Comment> commentRowMapper = (rs, rowNum) -> {
         Comment comment = new Comment();
         comment.setCommentId(rs.getLong("COMMENT_ID"));
         comment.setUserId(rs.getString("USERS_ID"));
@@ -36,7 +36,7 @@ public class CommentDAO {
 
     public Comment getCommentById(Long commentId) {
         String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{commentId}, commentRowMapper);
+        return jdbcTemplate.queryForObject(sql, commentRowMapper, commentId);
     }
 
     public int updateComment(@NonNull Comment comment) {

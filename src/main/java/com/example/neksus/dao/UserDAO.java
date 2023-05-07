@@ -3,6 +3,7 @@ package com.example.neksus.dao;
 import com.example.neksus.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,34 +18,26 @@ public class UserDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    private final RowMapper<User> userRowMapper = (rs, rowNum) -> {
+        User user = new User();
+        user.setUsername(rs.getString("USERNAME"));
+        user.setEmail(rs.getString("EMAIL"));
+        user.setPassword(rs.getString("PASSWORD"));
+        user.setIsBanned(rs.getString("IS_BANNED").charAt(0));
+        user.setIsAdmin(rs.getString("IS_ADMIN").charAt(0));
+        user.setRegisterDate(rs.getDate("REGISTER_DATE"));
+        user.setEmployeeId(rs.getString("EMPLOYEE_ID"));
+        return user;
+    };
+
     public User findByEmail(String email) {
         String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{email}, (rs, rowNum) -> {
-            User user = new User();
-            user.setUsername(rs.getString("USERNAME"));
-            user.setEmail(rs.getString("EMAIL"));
-            user.setPassword(rs.getString("PASSWORD"));
-            user.setIsBanned(rs.getString("IS_BANNED").charAt(0));
-            user.setIsAdmin(rs.getString("IS_ADMIN").charAt(0));
-            user.setRegisterDate(rs.getDate("REGISTER_DATE"));
-            user.setEmployeeId(rs.getString("EMPLOYEE_ID"));
-            return user;
-        });
+        return jdbcTemplate.queryForObject(sql, userRowMapper, email);
     }
 
     public List<User> findAll() {
         String sql = "SELECT * FROM USERS";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            User user = new User();
-            user.setUsername(rs.getString("USERNAME"));
-            user.setEmail(rs.getString("EMAIL"));
-            user.setPassword(rs.getString("PASSWORD"));
-            user.setIsBanned(rs.getString("IS_BANNED").charAt(0));
-            user.setIsAdmin(rs.getString("IS_ADMIN").charAt(0));
-            user.setRegisterDate(rs.getDate("REGISTER_DATE"));
-            user.setEmployeeId(rs.getString("EMPLOYEE_ID"));
-            return user;
-        });
+        return jdbcTemplate.query(sql, userRowMapper);
     }
 
     public User create(User user) {

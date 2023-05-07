@@ -27,14 +27,14 @@ public class CommentService {
     }
 
     public int addComment(@NonNull Comment comment) {
-        if (!isValidComment(comment)) {
+        if (isInvalidComment(comment)) {
             throw new IllegalArgumentException("Invalid comment object");
         }
         return commentDAO.insertComment(comment);
     }
 
     public int updateComment(@NonNull Comment comment) {
-        if (!isValidComment(comment)) {
+        if (isInvalidComment(comment)) {
             throw new IllegalArgumentException("Invalid comment object");
         }
         return commentDAO.updateComment(comment);
@@ -44,7 +44,7 @@ public class CommentService {
         return commentDAO.deleteComment(commentId);
     }
 
-    private boolean isValidComment(Comment comment) {
-        return comment.getCommentText() != null && !comment.getCommentText().trim().isEmpty();
+    private boolean isInvalidComment(Comment comment) {
+        return comment.getCommentText() == null || comment.getCommentText().trim().isEmpty();
     }
 }
