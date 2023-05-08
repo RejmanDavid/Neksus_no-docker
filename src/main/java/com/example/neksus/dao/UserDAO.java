@@ -31,29 +31,29 @@ public class UserDAO {
     };
 
     public User findByEmail(String email) {
-        String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
+        String sql = "SELECT * FROM N_USER WHERE EMAIL = ?";
         return jdbcTemplate.queryForObject(sql, userRowMapper, email);
     }
 
     public List<User> findAll() {
-        String sql = "SELECT * FROM USERS";
+        String sql = "SELECT * FROM N_USER";
         return jdbcTemplate.query(sql, userRowMapper);
     }
 
     public User create(User user) {
-        String sql = "INSERT INTO USERS (USERNAME, EMAIL, PASSWORD, IS_BANNED, IS_ADMIN, REGISTER_DATE, EMPLOYEE_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO N_USER (USERNAME, EMAIL, PASSWORD, IS_BANNED, IS_ADMIN, REGISTER_DATE, EMPLOYEE_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(), String.valueOf(user.getIsBanned()), String.valueOf(user.getIsAdmin()), user.getRegisterDate(), user.getEmployeeId());
         return rowsAffected > 0 ? user : null;
     }
 
     public boolean update(User user) {
-        String sql = "UPDATE USERS SET USERNAME = ?, PASSWORD = ?, IS_BANNED = ?, IS_ADMIN = ?, REGISTER_DATE = ?, EMPLOYEE_ID = ? WHERE EMAIL = ?";
+        String sql = "UPDATE N_USER SET USERNAME = ?, PASSWORD = ?, IS_BANNED = ?, IS_ADMIN = ?, REGISTER_DATE = ?, EMPLOYEE_ID = ? WHERE EMAIL = ?";
         int rowsAffected = jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), String.valueOf(user.getIsBanned()), String.valueOf(user.getIsAdmin()), user.getRegisterDate(), user.getEmployeeId(), user.getEmail());
         return rowsAffected > 0;
     }
 
     public boolean delete(String email) {
-        String sql = "DELETE FROM USERS WHERE EMAIL = ?";
+        String sql = "DELETE FROM N_USER WHERE EMAIL = ?";
         int rowsAffected = jdbcTemplate.update(sql, email);
         return rowsAffected > 0;
     }

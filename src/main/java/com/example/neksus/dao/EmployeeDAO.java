@@ -31,29 +31,29 @@ public class EmployeeDAO {
     }
 
     public List<Employee> getAllEmployees() {
-        String sql = "SELECT * FROM EMPLOYEE";
+        String sql = "SELECT * FROM N_EMPLOYEE";
         return jdbcTemplate.query(sql, employeeRowMapper);
     }
 
     public Employee getEmployeeByPhoneNumber(String phoneNumber) {
-        String sql = "SELECT * FROM EMPLOYEE WHERE PHONE_NUMBER = ?";
+        String sql = "SELECT * FROM N_EMPLOYEE WHERE PHONE_NUMBER = ?";
         return jdbcTemplate.queryForObject(sql, employeeRowMapper, phoneNumber);
     }
 
     public boolean insertEmployee(Employee employee) {
-        String sql = "INSERT INTO EMPLOYEE (FIRST_NAME, LAST_NAME, PHONE_NUMBER, CITY, COUNTRY, STREET, HOUSE_NUMBER, POSTAL_CODE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO N_EMPLOYEE (FIRST_NAME, LAST_NAME, PHONE_NUMBER, CITY, COUNTRY, STREET, HOUSE_NUMBER, POSTAL_CODE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, employee.getFirstName(), employee.getLastName(), employee.getPhoneNumber(), employee.getCity(), employee.getCountry(), employee.getStreet(), employee.getHouseNumber(), employee.getPostalCode());
         return rowsAffected > 0;
     }
 
     public boolean updateEmployee(Employee employee) {
-        String sql = "UPDATE EMPLOYEE SET FIRST_NAME = ?, LAST_NAME = ?, CITY = ?, COUNTRY = ?, STREET = ?, HOUSE_NUMBER = ?, POSTAL_CODE = ? WHERE PHONE_NUMBER = ?";
+        String sql = "UPDATE N_EMPLOYEE SET FIRST_NAME = ?, LAST_NAME = ?, CITY = ?, COUNTRY = ?, STREET = ?, HOUSE_NUMBER = ?, POSTAL_CODE = ? WHERE PHONE_NUMBER = ?";
         int rowsAffected = jdbcTemplate.update(sql, employee.getFirstName(), employee.getLastName(), employee.getCity(), employee.getCountry(), employee.getStreet(), employee.getHouseNumber(), employee.getPostalCode(), employee.getPhoneNumber());
         return rowsAffected > 0;
     }
 
     public boolean deleteEmployee(String phoneNumber) {
-        String sql = "DELETE FROM EMPLOYEE WHERE PHONE_NUMBER = ?";
+        String sql = "DELETE FROM N_EMPLOYEE WHERE PHONE_NUMBER = ?";
         int rowsAffected = jdbcTemplate.update(sql, phoneNumber);
         return rowsAffected > 0;
     }

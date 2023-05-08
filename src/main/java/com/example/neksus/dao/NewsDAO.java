@@ -32,31 +32,31 @@ public class NewsDAO {
     }
 
     public List<News> getAllNews() {
-        String sql = "SELECT * FROM NEWS";
+        String sql = "SELECT * FROM N_NEWS";
         return jdbcTemplate.query(sql, newsRowMapper);
     }
 
     public News getNewsById(Long id) {
-        String sql = "SELECT * FROM NEWS WHERE NEWS_ID = ?";
+        String sql = "SELECT * FROM N_NEWS WHERE NEWS_ID = ?";
         return jdbcTemplate.queryForObject(sql, newsRowMapper, id);
     }
 
     public boolean insertNews(News news) {
-        String sql = "INSERT INTO NEWS (DESCRIPTION, HEADLINE, IMAGE_PATH, IS_PINNED, RELEASE_DATE, NEWS_ID, GAME_ID, MOD_ID, AUTHOR) VALUES (?, ?, ?, ?, ?, NEWS_ID_SEQ.nextval, ?, ?, ?)";
+        String sql = "INSERT INTO N_NEWS (DESCRIPTION, HEADLINE, IMAGE_PATH, IS_PINNED, RELEASE_DATE, NEWS_ID, GAME_ID, MOD_ID, AUTHOR) VALUES (?, ?, ?, ?, ?, SEQ_N_NEWS_ID.nextval, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, news.getDescription(), news.getHeadline(), news.getImagePath(),
                 news.isPinned() ? "Y" : "N", news.getReleaseDate(), news.getGameId(), news.getModId(), news.getAuthor());
         return rowsAffected > 0;
     }
 
     public boolean updateNews(News news) {
-        String sql = "UPDATE NEWS SET DESCRIPTION = ?, HEADLINE = ?, IMAGE_PATH = ?, IS_PINNED = ?, RELEASE_DATE = ?, GAME_ID = ?, MOD_ID = ?, AUTHOR = ? WHERE NEWS_ID = ?";
+        String sql = "UPDATE N_NEWS SET DESCRIPTION = ?, HEADLINE = ?, IMAGE_PATH = ?, IS_PINNED = ?, RELEASE_DATE = ?, GAME_ID = ?, MOD_ID = ?, AUTHOR = ? WHERE NEWS_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, news.getDescription(), news.getHeadline(), news.getImagePath(),
                 news.isPinned() ? "Y" : "N", news.getReleaseDate(), news.getGameId(), news.getModId(), news.getAuthor(), news.getNewsId());
         return rowsAffected > 0;
     }
 
     public boolean deleteNews(Long id) {
-        String sql = "DELETE FROM NEWS WHERE NEWS_ID = ?";
+        String sql = "DELETE FROM N_NEWS WHERE NEWS_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }

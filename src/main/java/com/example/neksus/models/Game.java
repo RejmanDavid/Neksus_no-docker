@@ -10,15 +10,18 @@ public class Game {
     private String description;
     private String developer;
 
+    private String imagePath;
+
     public Game() {
     }
 
-    public Game(Long id, String name, LocalDate releaseDate, String description, String developer) {
+    public Game(Long id, String name, LocalDate releaseDate, String description, String developer, String imagePath) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
         this.description = description;
         this.developer = developer;
+        this.imagePath = imagePath;
     }
 
     public Long getId() {
@@ -61,6 +64,15 @@ public class Game {
         this.developer = developer;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+
     @Override
     public String toString() {
         return "Game{" +
@@ -69,6 +81,7 @@ public class Game {
                 ", releaseDate=" + releaseDate +
                 ", description='" + description + '\'' +
                 ", developer='" + developer + '\'' +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }

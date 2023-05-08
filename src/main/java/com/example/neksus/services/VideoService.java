@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @Service
 public class VideoService {
 
-    private static final Pattern YOUTUBE_URL_PATTERN = Pattern.compile("^(https?\\:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.?be)\\/.+$");
+    private static final Pattern YOUTUBE_URL_PATTERN = Pattern.compile("^(https?://)?(www\\.)?(youtube\\.com|youtu\\.?be)/.+$");
     private final VideoDAO videoDAO;
 
     @Autowired

@@ -18,7 +18,7 @@ public class ImageDAO {
     }
 
     public List<Image> getAllImages() {
-        String sql = "SELECT * FROM IMAGE";
+        String sql = "SELECT * FROM N_IMAGE";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             Image image = new Image();
             image.setImageId(resultSet.getLong("IMAGE_ID"));
@@ -29,7 +29,7 @@ public class ImageDAO {
     }
 
     public Image getImageById(Long id) {
-        String sql = "SELECT * FROM IMAGE WHERE IMAGE_ID = ?";
+        String sql = "SELECT * FROM N_IMAGE WHERE IMAGE_ID = ?";
         return jdbcTemplate.queryForObject(sql, (resultSet, rowNum) -> {
             Image image = new Image();
             image.setImageId(resultSet.getLong("IMAGE_ID"));
@@ -40,7 +40,7 @@ public class ImageDAO {
     }
 
     public List<Image> getImagesByModId(Long modId) {
-        String sql = "SELECT * FROM IMAGE WHERE MOD_ID = ?";
+        String sql = "SELECT * FROM N_IMAGE WHERE MOD_ID = ?";
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             Image image = new Image();
             image.setImageId(resultSet.getLong("IMAGE_ID"));
@@ -51,12 +51,12 @@ public class ImageDAO {
     }
 
     public boolean insertImage(Image image) {
-        String sql = "INSERT INTO IMAGE (IMAGE_ID, IMAGE_PATH, MOD_ID) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO N_IMAGE (IMAGE_ID, IMAGE_PATH, MOD_ID) VALUES (?, ?, ?)";
         return jdbcTemplate.update(sql, image.getImageId(), image.getImagePath(), image.getModId()) > 0;
     }
 
     public boolean deleteImage(Long id) {
-        String sql = "DELETE FROM IMAGE WHERE IMAGE_ID = ?";
+        String sql = "DELETE FROM N_IMAGE WHERE IMAGE_ID = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }

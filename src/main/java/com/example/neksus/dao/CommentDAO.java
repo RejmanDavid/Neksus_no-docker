@@ -30,27 +30,27 @@ public class CommentDAO {
     }
 
     public List<Comment> getAllComments() {
-        String sql = "SELECT * FROM COMMENTS";
+        String sql = "SELECT * FROM N_COMMENT";
         return jdbcTemplate.query(sql, commentRowMapper);
     }
 
     public Comment getCommentById(Long commentId) {
-        String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = ?";
+        String sql = "SELECT * FROM N_COMMENT WHERE COMMENT_ID = ?";
         return jdbcTemplate.queryForObject(sql, commentRowMapper, commentId);
     }
 
     public int updateComment(@NonNull Comment comment) {
-        String sql = "UPDATE COMMENTS SET USERS_ID = ?, MOD_ID = ?, COMMENT_TEXT = ?, DATE_COMMENTED = ?, PARENT_COMMENT = ? WHERE COMMENT_ID = ?";
+        String sql = "UPDATE N_COMMENT SET USER_ID = ?, MOD_ID = ?, COMMENT_TEXT = ?, DATE_COMMENTED = ?, PARENT_COMMENT = ? WHERE COMMENT_ID = ?";
         return jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment(), comment.getCommentId());
     }
 
     public int insertComment(@NonNull Comment comment) {
-        String sql = "INSERT INTO COMMENTS (COMMENT_ID, USERS_ID, MOD_ID, COMMENT_TEXT, DATE_COMMENTED, PARENT_COMMENT) VALUES (COMMENTS_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO N_COMMENT (COMMENT_ID, USER_ID, MOD_ID, COMMENT_TEXT, DATE_COMMENTED, PARENT_COMMENT) VALUES (SEQ_N_COMMENT_ID.NEXTVAL, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql, comment.getUserId(), comment.getModId(), comment.getCommentText(), comment.getDateCommented(), comment.getParentComment());
     }
 
     public int deleteComment(Long commentId) {
-        String sql = "DELETE FROM COMMENTS WHERE COMMENT_ID = ?";
+        String sql = "DELETE FROM N_COMMENT WHERE COMMENT_ID = ?";
         return jdbcTemplate.update(sql, commentId);
     }
 }

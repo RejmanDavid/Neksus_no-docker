@@ -26,27 +26,27 @@ public class VideoDAO {
     }
 
     public List<Video> getAllVideos() {
-        String sql = "SELECT * FROM VIDEO";
+        String sql = "SELECT * FROM N_VIDEO";
         return jdbcTemplate.query(sql, videoRowMapper);
     }
 
     public Video getVideoById(Long id) {
-        String sql = "SELECT * FROM VIDEO WHERE VIDEO_ID = ?";
+        String sql = "SELECT * FROM N_VIDEO WHERE VIDEO_ID = ?";
         return jdbcTemplate.queryForObject(sql, videoRowMapper, id);
     }
 
     public boolean insertVideo(Video video) {
-        String sql = "INSERT INTO VIDEO (VIDEO_PATH, MOD_ID) VALUES (?, ?)";
+        String sql = "INSERT INTO N_VIDEO (VIDEO_ID, VIDEO_PATH, MOD_ID) VALUES (SEQ_N_VIDEO_ID.NEXTVAL, ?, ?)";
         return jdbcTemplate.update(sql, video.getVideoPath(), video.getModId()) > 0;
     }
 
     public boolean updateVideo(Video video) {
-        String sql = "UPDATE VIDEO SET VIDEO_PATH = ?, MOD_ID = ? WHERE VIDEO_ID = ?";
+        String sql = "UPDATE N_VIDEO SET VIDEO_PATH = ?, MOD_ID = ? WHERE VIDEO_ID = ?";
         return jdbcTemplate.update(sql, video.getVideoPath(), video.getModId(), video.getVideoId()) > 0;
     }
 
     public boolean deleteVideo(Long id) {
-        String sql = "DELETE FROM VIDEO WHERE VIDEO_ID = ?";
+        String sql = "DELETE FROM N_VIDEO WHERE VIDEO_ID = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }
