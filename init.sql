@@ -466,6 +466,60 @@ CREATE OR REPLACE TRIGGER TRG_N_VIDEO_ID
 	END;
 /
 
+CREATE OR REPLACE TRIGGER N_UserRegister
+    BEFORE INSERT
+    ON N_User
+    FOR EACH ROW
+    BEGIN
+        SELECT SYSDATE()
+        INTO :NEW.Register_Date
+        FROM dual;
+    END;
+/
+
+CREATE OR REPLACE TRIGGER N_CommentDate
+     BEFORE INSERT
+     ON N_Comment
+     FOR EACH ROW
+     BEGIN
+         SELECT SYSDATE()
+         INTO :NEW.DATE_COMMENTED
+         FROM dual;
+     END;
+ /
+
+CREATE OR REPLACE TRIGGER N_FileRelease
+     BEFORE INSERT
+     ON N_File
+     FOR EACH ROW
+     BEGIN
+         SELECT SYSDATE()
+         INTO :NEW.RELEASE_DATE
+         FROM dual;
+     END;
+ /
+
+CREATE OR REPLACE TRIGGER N_ModRelease
+     BEFORE INSERT
+     ON N_Mod
+     FOR EACH ROW
+     BEGIN
+         SELECT SYSDATE()
+         INTO :NEW.DATE_PUBLISHED
+         FROM dual;
+     END;
+ /
+
+CREATE OR REPLACE TRIGGER N_NewsRelease
+     BEFORE INSERT
+     ON N_News
+     FOR EACH ROW
+     BEGIN
+         SELECT SYSDATE()
+         INTO :NEW.RELEASE_DATE
+         FROM dual;
+     END;
+ /
 
 /* Create Primary Keys, Indexes, Uniques, Checks, Triggers */
 
