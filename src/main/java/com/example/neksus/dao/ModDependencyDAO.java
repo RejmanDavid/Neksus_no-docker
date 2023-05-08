@@ -15,12 +15,12 @@ public class ModDependencyDAO {
     }
 
     public boolean insertModDependency(ModDependency modDependency) {
-        String sql = "INSERT INTO MOD_DEPENDENCY (CHILDMODID, PARENTMODID, MODDEPENDENCYID) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO N_MOD_DEPENDENCY (CHILD_MOD_ID, PARENT_MOD_ID, MOD_DEPENDENCY_ID) VALUES (?, ?, ?)";
         return jdbcTemplate.update(sql, modDependency.getChildModId(), modDependency.getParentModId(), modDependency.getModDependencyId()) > 0;
     }
 
     public boolean deleteModDependency(Long modDependencyId) {
-        String sql = "DELETE FROM MOD_DEPENDENCY WHERE MODDEPENDENCYID = ?";
+        String sql = "DELETE FROM N_MOD_DEPENDENCY WHERE MOD_DEPENDENCY_ID = ?";
         return jdbcTemplate.update(sql, modDependencyId) > 0;
     }
 }

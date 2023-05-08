@@ -18,6 +18,7 @@ public class GameDAO {
         game.setReleaseDate(rs.getDate("RELEASE_DATE").toLocalDate());
         game.setDescription(rs.getString("DESCRIPTION"));
         game.setDeveloper(rs.getString("DEVELOPER"));
+        game.setImagePath(rs.getString("IMAGE_PATH"));
         return game;
     };
 
@@ -26,29 +27,29 @@ public class GameDAO {
     }
 
     public List<Game> getAllGames() {
-        String sql = "SELECT * FROM GAME";
+        String sql = "SELECT * FROM N_GAME";
         return jdbcTemplate.query(sql, gameRowMapper);
     }
 
     public Game getGameById(long id) {
-        String sql = "SELECT * FROM GAME WHERE GAME_ID = ?";
+        String sql = "SELECT * FROM N_GAME WHERE GAME_ID = ?";
         return jdbcTemplate.queryForObject(sql, gameRowMapper, id);
     }
 
     public boolean insertGame(Game game) {
-        String sql = "INSERT INTO GAME (GAME_ID, GAME_NAME, RELEASE_DATE, DESCRIPTION, DEVELOPER) VALUES (?, ?, ?, ?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, game.getId(), game.getName(), game.getReleaseDate(), game.getDescription(), game.getDeveloper());
+        String sql = "INSERT INTO N_GAME (GAME_ID, GAME_NAME, RELEASE_DATE, DESCRIPTION, DEVELOPER, IMAGE_PATH) VALUES (?, ?, ?, ?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, game.getId(), game.getName(), game.getReleaseDate(), game.getDescription(), game.getDeveloper(), game.getImagePath());
         return rowsAffected > 0;
     }
 
     public boolean updateGame(Game game) {
-        String sql = "UPDATE GAME SET GAME_NAME = ?, RELEASE_DATE = ?, DESCRIPTION = ?, DEVELOPER = ? WHERE GAME_ID = ?";
-        int rowsAffected = jdbcTemplate.update(sql, game.getName(), game.getReleaseDate(), game.getDescription(), game.getDeveloper(), game.getId());
+        String sql = "UPDATE N_GAME SET GAME_NAME = ?, RELEASE_DATE = ?, DESCRIPTION = ?, DEVELOPER = ?, IMAGE_PATH = ? WHERE GAME_ID = ?";
+        int rowsAffected = jdbcTemplate.update(sql, game.getName(), game.getReleaseDate(), game.getDescription(), game.getDeveloper(), game.getImagePath(), game.getId());
         return rowsAffected > 0;
     }
 
     public boolean deleteGame(long id) {
-        String sql = "DELETE FROM GAME WHERE GAME_ID = ?";
+        String sql = "DELETE FROM N_GAME WHERE GAME_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }

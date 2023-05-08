@@ -27,34 +27,35 @@ public class ChangelogsDAO {
     }
 
     public List<Changelogs> getAllChangelogs() {
-        String sql = "SELECT * FROM CHANGELOGS";
+        String sql = "SELECT * FROM N_CHANGELOG";
         return jdbcTemplate.query(sql, changelogRowMapper);
     }
 
     public Changelogs getChangelogById(Long id) {
-        String sql = "SELECT * FROM CHANGELOGS WHERE CHANGELOG_ID = ?";
+        String sql = "SELECT * FROM N_CHANGELOG WHERE CHANGELOG_ID = ?";
         return jdbcTemplate.queryForObject(sql, changelogRowMapper, id);
     }
 
     public List<Changelogs> getChangelogsByModId(Long modId) {
-        String sql = "SELECT * FROM CHANGELOGS WHERE MOD_ID = ?";
+        String sql = "SELECT * FROM N_CHANGELOG WHERE MOD_ID = ?";
         return jdbcTemplate.query(sql, changelogRowMapper, modId);
     }
 
     public boolean insertChangelog(Changelogs changelog) {
-        String sql = "INSERT INTO CHANGELOGS (DESCRIPTION, VERSION, MOD_ID) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO N_CHANGELOG (CHANGELOG_ID, DESCRIPTION, VERSION, MOD_ID) VALUES (SEQ_N_CHANGELOG_ID.NEXTVAL, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, changelog.getDescription(), changelog.getVersion(), changelog.getModId());
         return rowsAffected > 0;
     }
 
+
     public boolean updateChangelog(Changelogs changelog) {
-        String sql = "UPDATE CHANGELOGS SET DESCRIPTION = ?, VERSION = ?, MOD_ID = ? WHERE CHANGELOG_ID = ?";
+        String sql = "UPDATE N_CHANGELOG SET DESCRIPTION = ?, VERSION = ?, MOD_ID = ? WHERE CHANGELOG_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, changelog.getDescription(), changelog.getVersion(), changelog.getModId(), changelog.getChangelogId());
         return rowsAffected > 0;
     }
 
     public boolean deleteChangelog(Long id) {
-        String sql = "DELETE FROM CHANGELOGS WHERE CHANGELOG_ID = ?";
+        String sql = "DELETE FROM N_CHANGELOG WHERE CHANGELOG_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }

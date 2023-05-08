@@ -31,29 +31,29 @@ public class ModDAO {
     }
 
     public List<Mod> getAllMods() {
-        String sql = "SELECT * FROM MOD";
+        String sql = "SELECT * FROM N_MOD";
         return jdbcTemplate.query(sql, modRowMapper);
     }
 
     public Mod getModById(long modId) {
-        String sql = "SELECT * FROM MOD WHERE MOD_ID = ?";
+        String sql = "SELECT * FROM N_MOD WHERE MOD_ID = ?";
         return jdbcTemplate.queryForObject(sql, modRowMapper, modId);
     }
 
     public boolean insertMod(Mod mod) {
-        String sql = "INSERT INTO MOD (MOD_ID, MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO N_MOD (MOD_ID, MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), mod.getThumbnailImageId(), mod.getTrackCount());
         return rowsAffected > 0;
     }
 
     public boolean updateMod(Mod mod) {
-        String sql = "UPDATE MOD SET MOD_NAME = ?, DESCRIPTION = ?, AUTHOR = ?, GAME_ID = ?, DATE_PUBLISHED = ?, THUMBNAIL_IMAGE_ID = ?, TRACK_COUNT = ? WHERE MOD_ID = ?";
+        String sql = "UPDATE N_MOD SET MOD_NAME = ?, DESCRIPTION = ?, AUTHOR = ?, GAME_ID = ?, DATE_PUBLISHED = ?, THUMBNAIL_IMAGE_ID = ?, TRACK_COUNT = ? WHERE MOD_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), mod.getThumbnailImageId(), mod.getTrackCount(), mod.getModId());
         return rowsAffected > 0;
     }
 
     public boolean deleteMod(long modId) {
-        String sql = "DELETE FROM MOD WHERE MOD_ID = ?";
+        String sql = "DELETE FROM N_MOD WHERE MOD_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql, modId);
         return rowsAffected > 0;
     }
