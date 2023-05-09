@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyUI</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body onload="clear()">
+    <header>
+        <nav>
+            <img src="../../Icons/17085531.png">
+            <ul>
+                <li><a href="../../index.html">Hry</a></li>
+                <li><a href="../../news.html">Novinky</a></li>
+                <li><a href="../../profil.html">Profil</a></li>
+                <li><a href="../../upload.html">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="mod">
+
+        <article id="top1">
+
+            <h2><a href="../../index.html"> Index </a> / <a href="../skyrim_mods.html">Skyrim</a> / SkyUI</h2>
+            <button class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
+
+            <h4>Uploadnuto uživatelem <a href="../../Users/schlangster.html">schlangster</a> dne 1. 7. 2018</h4>
+
+        </article>
+
+        <article id="top2">
+
+            <h1>SkyUI</h1>
+            <article id="track">
+                <h3>Počet sledování: 123x</h3>
+                <button onclick="track()">SLEDOVAT</button>
+            </article>
+
+        </article>
+            
+        <article id="images">
+                
+            <img src="SkyUI/1.webp">
+            <img src="SkyUI/2.webp">
+            <img src="SkyUI/3.webp">
+            <img src="SkyUI/4.webp">
+            <img src="SkyUI/4.webp">
+            <img src="SkyUI/4.webp">
+            <img src="SkyUI/4.webp">
+            <img src="SkyUI/4.webp">
+
+        </article>
+
+        <article id="nav2">
+
+            <button onclick="description()">Popis</button>
+            <button onclick="changelog()">Changelog</button>
+            <button onclick="files()">Soubory</button>
+            <button onclick="news()">Novinky</button>
+            <button onclick="user_images()">Uživatelské obrázky</button>
+            <button onclick="videos()">Videa</button>
+            <button onclick="comments()">Komentáře</button>
+            <button onclick="dependecny()">Požadavky</button>
+
+        </article>
+
+        <section id="description">
+
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Fusce aliquam vestibulum ipsum. Nullam dapibus fermentum ipsum. In convallis. Integer imperdiet lectus quis justo. Sed convallis magna eu sem. Etiam posuere lacus quis dolor. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam.
+
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Fusce wisi. Vestibulum fermentum tortor id mi. Vivamus ac leo pretium faucibus. Nulla non arcu lacinia neque faucibus fringilla. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Proin in tellus sit amet nibh dignissim sagittis. Nunc tincidunt ante vitae massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In rutrum. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor.
+
+                Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Quisque porta. Aliquam ante. Aenean fermentum risus id tortor. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Mauris metus. Etiam neque. Nulla est. Fusce aliquam vestibulum ipsum. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Maecenas lorem. Suspendisse nisl. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Aliquam erat volutpat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Vivamus porttitor turpis ac leo. Nulla non arcu lacinia neque faucibus fringilla. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim.
+
+                Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Vivamus luctus egestas leo. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Etiam neque. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Maecenas libero. Praesent vitae arcu tempor neque lacinia pretium. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Duis viverra diam non justo. Aliquam erat volutpat. Quisque porta. Integer malesuada. Curabitur vitae diam non enim vestibulum interdum. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+
+        </section>
+
+        <section id="changelog">
+
+            <button class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou aktualizaci</button>
+
+            <article class="list" id="changes_list">
+
+                <ul class="changelog">
+
+                    <h3>v5.2.4</h3>
+                    <li>Úprava</li>
+
+                </ul>
+
+                <ul class="changelog">
+
+                    <h3>v5.2.3</h3>
+                    <li>Úprava</li>
+
+                </ul>
+
+            </article>
+
+        </section>
+
+        <section id="changelog_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(changelog_popup)">&times;</span>
+            <label for="version">Verze:</label>
+            <input type="text" id="version">
+            <label for="changelog_text">Komentář:</label>
+            <textarea id="changelog_text"></textarea>
+            <button onclick="submitChangelog()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="files">
+
+            <button class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
+
+            <article class="list" id="files_list">
+
+                <article class="souboros">
+
+                    <h3>SkyUI</h3>
+                    <h3>5.2.4</h3>
+                    <button>DOWNLOAD</button>
+                </article>
+
+                <article class="souboros">
+
+                    <h3>SkyUI</h3>
+                    <h3>5.2.3</h3>
+                    <button>DOWNLOAD</button>
+
+                </article>
+
+                <article class="souboros">
+
+                    <h3>SkyUI</h3>
+                    <h3>5.2.2</h3>
+                    <button>DOWNLOAD</button>
+
+                </article>
+
+            </article>
+
+        </section>
+
+        <section id="file_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(file_popup)">&times;</span>
+            <label for="file">Soubor:</label>
+            <input type="file" id="file">
+            <label for="file_text">Název:</label>
+            <input type="text" id="file_text">
+            <button onclick="submitFile()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="news">
+
+            <button class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
+
+            <article class="list" id="list_of_news">
+
+                <ul class="novinka">
+
+                    <article class="headline_comment">
+                        <h4>2022-1-5</h4>
+                        <h3>schlangster</h3>
+                        <p>headline</p>
+                    </article>
+                    <li>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Fusce aliquam vestibulum ipsum. Nullam dapibus fermentum ipsum. In convallis. Integer imperdiet lectus quis justo. Sed convallis magna eu sem. Etiam posuere lacus quis dolor. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Fusce wisi. Vestibulum fermentum tortor id mi. Vivamus ac leo pretium faucibus. Nulla non arcu lacinia neque faucibus fringilla. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Proin in tellus sit amet nibh dignissim sagittis. Nunc tincidunt ante vitae massa.</li>
+
+                </ul>
+
+                <ul class="novinka">
+
+                    <article class="headline_comment">
+                        <h4>2021-1-4</h4>
+                        <h3>schlangster</h3>
+                        <p>headline</p>
+                    </article>
+                    <li>Duis risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Fusce aliquam vestibulum ipsum. Nullam dapibus fermentum ipsum. In convallis. Integer imperdiet lectus quis justo. Sed convallis magna eu sem. Etiam posuere lacus quis dolor. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Fusce wisi. Vestibulum fermentum tortor id mi. Vivamus ac leo pretium faucibus. Nulla non arcu lacinia neque faucibus fringilla. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Proin in tellus sit amet nibh dignissim sagittis. Nunc tincidunt ante vitae massa.</li>
+
+                </ul>
+
+            </article>
+
+        </section>
+
+        <section id="news_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(news_popup)">&times;</span>
+            <label for="news_headline">Header:</label>
+            <input type="text" id="news_headline">
+            <label for="news_text">Text:</label>
+            <textarea id="news_text"></textarea>
+            <button onclick="submitNews()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="user_images">
+
+            <button class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku</button>
+
+            <article class="list" id="list_of_images">
+                <img src="SkyUI/4.webp">
+                <img src="SkyUI/4.webp">
+                <img src="SkyUI/4.webp">
+                <img src="SkyUI/4.webp">
+            </article>
+
+        </section>
+
+        <section id="image_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(image_popup)">&times;</span>
+            <label for="image_link">Link na obrázek:</label>
+            <textarea id="image_link"></textarea>
+            <button onclick="submitVideo()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="videos">
+
+            <button class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
+
+            <article class="list" id="videos_list">
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/aM7zd24AH7Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/aM7zd24AH7Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/aM7zd24AH7Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+            </article>
+
+        </section>
+
+        <section id="video_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(video_popup)">&times;</span>
+            <label for="video_link">Link na video:</label>
+            <textarea id="video_link"></textarea>
+            <button onclick="submitVideo()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="comments">
+
+            <button  class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Přidat komentář</button>
+
+            <article class="list" id="comment_list">
+
+                <article class="comment">
+
+                    <article class="created">
+                        <p class="author">NNNNN</p>
+                        <p class="date">13.3.2022</p>
+                    </article>
+                    <p class="content">fffffffffffffffffffffffffffffff</p>
+
+                </article>
+
+                <article class="comment">
+
+                    <article class="created">
+                        <p class="author">NNNNN</p>
+                        <p class="date">13.3.2022</p>
+                    </article>
+                    <p class="content">fffffffffffffffffffffffffffffff</p>
+
+                </article>
+
+            </article>
+
+        </section>
+
+        <section id="comment_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(comment_popup)">&times;</span>
+            <label for="comment_text">Komentář:</label>
+            <textarea id="comment_text"></textarea>
+            <button onclick="submitComment()" class="upload_user">Přidej</button>
+
+        </section>
+
+        <section id="dependecny">
+
+            <button class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
+
+            <article class="list" id="mod_list">
+
+                <h3>List vyžadovaných modů:</h3>
+
+                <article id="needed_mod_list">
+
+                    <li>Unoficial Skyrim Patch</li>
+                    <li>SKSE</li>
+
+                </article>
+
+                <h3>List modů vyžadující tento:</h3>
+
+                <article id="required_by">
+
+                    <li>Maximum Carnage</li>
+
+                </article>
+
+            </article>
+
+        </section>
+
+        <section id="req_popup" class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(req_popup)">&times;</span>
+            <label for="mod_search">Link na mod:</label>
+            <textarea id="mod_search"></textarea>
+            <button onclick="submitVideo()" class="upload_user">Přidej</button>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+    </footer>
+
+<script>
+
+function description() {
+  var x = document.getElementById("description");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+}}
+
+function changelog() {
+  var x = document.getElementById("changelog");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+}}
+
+function files() {
+  var x = document.getElementById("files");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+}}
+
+function news() {
+  var x = document.getElementById("news");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+}}
+
+function user_images() {
+  var x = document.getElementById("user_images");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+}}
+
+function videos() {
+  var x = document.getElementById("videos");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+}}
+
+function comments() {
+  var x = document.getElementById("comments");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+}}
+
+function dependecny() {
+  var x = document.getElementById("dependecny");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+}}
+
+function clear() {
+
+    document.getElementById("description").style.display = "none";
+    document.getElementById("changelog").style.display = "none";
+    document.getElementById("files").style.display = "none";
+    document.getElementById("news").style.display = "none";
+    document.getElementById("user_images").style.display = "none";
+    document.getElementById("videos").style.display = "none";
+    document.getElementById("comments").style.display = "none";
+    document.getElementById("dependecny").style.display = "none";
+
+    description();
+
+}
+
+var comment_popup = document.getElementById("comment_popup");
+var changelog_popup = document.getElementById("changelog_popup");
+var file_popup = document.getElementById("file_popup");
+var video_popup = document.getElementById("video_popup");
+var image_popup = document.getElementById("image_popup");
+var req_popup = document.getElementById("req_popup");
+
+
+function show_popup(popup) {
+
+    popup.style.display = "block";
+
+}
+
+function close_popup(popup) {
+
+    popup.style.display = "none";
+
+}
+
+function move() {
+
+    location.href = "../edit_mod.html";
+
+}
+
+
+</script>
+
+</body>
+
+</html>

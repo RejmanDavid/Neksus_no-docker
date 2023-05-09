@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>SkyUI</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body onload="clear()">
+    <header>
+        <nav>
+            <img src="../../Icons/17085531.png">
+            <ul>
+                <li><a href="../index.html">Hry</a></li>
+                <li><a href="../news.html">Novinky</a></li>
+                <li><a href="../profil.html">Profil</a></li>
+                <li><a href="../upload.html">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="mod">
+
+        <article id="top1">
+
+            <h2><a href="../index.html"> Index </a> / <a href="skyrim_mods.html">Skyrim</a> / SkyUI</h2>
+            <button class="upload_author_only" id="edit_mod" onclick="submit_changes_of_mod()">Odeslat změny</button>
+
+            <h4>Uploadnuto uživatelem <a href="../../Users/schlangster.html">schlangster</a> dne 1. 7. 2018</h4>
+
+        </article>
+
+        <article id="top2">
+
+            <textarea id="mod_name">Název modu</textarea>
+            <article id="track">
+                <h3>Počet sledování: 123x</h3>
+                <button onclick="track()">SLEDOVAT</button>
+            </article>
+
+        </article>
+
+        <article id="images">
+
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/1.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/2.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/3.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/4.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/4.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/4.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/4.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+            <img style="padding-right:0.2rem;" src="Skyrim_Mods/SkyUI/4.webp">
+            <span onclick="remove_image()" class="remove_img">&times;</span>
+
+        </article>
+
+        <textarea id="edit_headline">Úvodní text</textarea>
+
+        <textarea id="edit_description">
+
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Curabitur ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Fusce aliquam vestibulum ipsum. Nullam dapibus fermentum ipsum. In convallis. Integer imperdiet lectus quis justo. Sed convallis magna eu sem. Etiam posuere lacus quis dolor. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam.
+
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Fusce wisi. Vestibulum fermentum tortor id mi. Vivamus ac leo pretium faucibus. Nulla non arcu lacinia neque faucibus fringilla. Duis bibendum, lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis enim ipsum id lacus. Proin in tellus sit amet nibh dignissim sagittis. Nunc tincidunt ante vitae massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In rutrum. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor.
+
+                Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Quisque porta. Aliquam ante. Aenean fermentum risus id tortor. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Mauris metus. Etiam neque. Nulla est. Fusce aliquam vestibulum ipsum. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Maecenas lorem. Suspendisse nisl. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Aliquam erat volutpat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Vivamus porttitor turpis ac leo. Nulla non arcu lacinia neque faucibus fringilla. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim.
+
+                Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Vivamus luctus egestas leo. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Etiam neque. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Maecenas libero. Praesent vitae arcu tempor neque lacinia pretium. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Duis viverra diam non justo. Aliquam erat volutpat. Quisque porta. Integer malesuada. Curabitur vitae diam non enim vestibulum interdum. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+        </textarea>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+    </footer>
+
+</body>
+</html>
