@@ -2,11 +2,13 @@ package com.example.neksus.dao;
 
 import com.example.neksus.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDAO {
@@ -30,9 +32,14 @@ public class UserDAO {
         return user;
     };
 
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         String sql = "SELECT * FROM N_USER WHERE EMAIL = ?";
-        return jdbcTemplate.queryForObject(sql, userRowMapper, email);
+        try {
+            User user = jdbcTemplate.queryForObject(sql, userRowMapper, email);
+            return Optional.of(user);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     public List<User> findAll() {
