@@ -39,6 +39,11 @@ public class NewsService {
         return newsDAO.deleteNews(id);
     }
 
+    public List<News> getNewsByModId(Long modId) {
+        return newsDAO.getNewsByModId(modId);
+    }
+
+
     private void validateNews(News news) {
         if (news.getDescription() == null || news.getDescription().trim().isEmpty()) {
             throw new IllegalArgumentException("News description is required");

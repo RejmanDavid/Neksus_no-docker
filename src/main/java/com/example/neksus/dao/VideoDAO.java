@@ -49,4 +49,10 @@ public class VideoDAO {
         String sql = "DELETE FROM N_VIDEO WHERE VIDEO_ID = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
+
+    public List<Video> getVideosByModId(Long modId) {
+        String sql = "SELECT * FROM N_VIDEO WHERE MOD_ID = ?";
+        return jdbcTemplate.query(sql, videoRowMapper, modId);
+    }
+
 }

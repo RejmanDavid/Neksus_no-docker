@@ -48,6 +48,11 @@ public class VideoService {
         return videoDAO.deleteVideo(id);
     }
 
+    public List<Video> getVideosByModId(Long modId) {
+        return videoDAO.getVideosByModId(modId);
+    }
+
+
     private boolean isVideoValid(Video video) {
         if (video.getVideoPath() == null || !isValidYouTubeUrl(video.getVideoPath())) {
             return false;

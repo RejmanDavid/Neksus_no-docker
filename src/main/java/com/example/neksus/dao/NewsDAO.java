@@ -60,4 +60,10 @@ public class NewsDAO {
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }
+
+    public List<News> getNewsByModId(Long modId) {
+        String sql = "SELECT * FROM N_NEWS WHERE MOD_ID = ?";
+        return jdbcTemplate.query(sql, newsRowMapper, modId);
+    }
+
 }

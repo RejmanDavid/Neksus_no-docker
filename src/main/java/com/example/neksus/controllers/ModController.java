@@ -1,8 +1,7 @@
 package com.example.neksus.controllers;
 
 import com.example.neksus.models.Mod;
-import com.example.neksus.services.GameService;
-import com.example.neksus.services.ModService;
+import com.example.neksus.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +12,19 @@ public class ModController {
 
     private final ModService modService;
     private final GameService gameService;
+    private final ChangelogsService changelogsService;
+    private final FilesService filesService;
+    private final NewsService newsService;
+    private final VideoService videoService;
 
     @Autowired
-    public ModController(ModService modService, GameService gameService) {
+    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService) {
         this.modService = modService;
         this.gameService = gameService;
+        this.changelogsService = changelogsService;
+        this.filesService = filesService;
+        this.newsService = newsService;
+        this.videoService = videoService;
     }
 
     @RequestMapping("/games/{gameId}")
@@ -29,6 +36,10 @@ public class ModController {
     @RequestMapping("/games/{gameId}/{modId}")
     public String getModById(@PathVariable("modId") Long modId, Model model) {
         model.addAttribute("mod", modService.getModById(modId));
+        model.addAttribute("changelogs", changelogsService.getChangelogsByModId(modId));
+        model.addAttribute("files", filesService.getFilesByModId(modId));
+        model.addAttribute("news", newsService.getNewsByModId(modId));
+        model.addAttribute("videos", videoService.getVideosByModId(modId));
         return "modDetails";
     }
 

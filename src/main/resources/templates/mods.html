@@ -22,15 +22,10 @@
 <main>
     <h1>Mods</h1>
     <section id="mod_list">
-        <div class="mod" th:each="mods : ${mods}">
-            <a th:href="@{'/games/' + ${mods.gameId} + '/' + ${mods.modId}}" th:text="${mods.modName}">
+            <a class="mod" th:each="mods : ${mods}"  th:href="@{'/games/' + ${mods.gameId} + '/' + ${mods.modId}}">
                 <h2 th:text="${mods.modName}"></h2>
                 <p th:text="${mods.description}"></p>
-                <p th:text="${'Author: ' + mods.author}"></p>
-                <p th:text="${'Published Date: ' + mods.datePublished}"></p>
-                <p th:text="${'Track Count: ' + mods.trackCount}"></p>
             </a>
-        </div>
     </section>
 </main>
 <footer>
