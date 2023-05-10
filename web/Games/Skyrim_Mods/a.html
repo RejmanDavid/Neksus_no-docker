@@ -5,7 +5,7 @@
     <title>SkyUI</title>
     <link rel="stylesheet" href="../../styles.css">
 </head>
-<body onload="clear()">
+<body>
     <header>
         <nav>
             <img src="../../Icons/17085531.png">
@@ -79,7 +79,7 @@
 
         </section>
 
-        <section id="changelog">
+        <section id="changelog"  style="display: none;">
 
             <button class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou aktualizaci</button>
 
@@ -114,7 +114,7 @@
 
         </section>
 
-        <section id="files">
+        <section id="files" style="display: none;">
 
             <button class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
 
@@ -158,7 +158,7 @@
 
         </section>
 
-        <section id="news">
+        <section id="news" style="display: none;">
 
             <button class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
 
@@ -201,7 +201,7 @@
 
         </section>
 
-        <section id="user_images">
+        <section id="user_images"  style="display: none;">
 
             <button class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku</button>
 
@@ -223,7 +223,7 @@
 
         </section>
 
-        <section id="videos">
+        <section id="videos" style="display: none;">
 
             <button class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
 
@@ -248,7 +248,7 @@
 
         </section>
 
-        <section id="comments">
+        <section id="comments"  style="display: none;">
 
             <button  class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Přidat komentář</button>
 
@@ -287,7 +287,7 @@
 
         </section>
 
-        <section id="dependecny">
+        <section id="dependecny" style="display: none;">
 
             <button class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
 
@@ -439,21 +439,6 @@ function dependecny() {
     document.getElementById("comments").style.display = "none";
     document.getElementById("videos").style.display = "none";
 }}
-
-function clear() {
-
-    document.getElementById("description").style.display = "none";
-    document.getElementById("changelog").style.display = "none";
-    document.getElementById("files").style.display = "none";
-    document.getElementById("news").style.display = "none";
-    document.getElementById("user_images").style.display = "none";
-    document.getElementById("videos").style.display = "none";
-    document.getElementById("comments").style.display = "none";
-    document.getElementById("dependecny").style.display = "none";
-
-    description();
-
-}
 
 var comment_popup = document.getElementById("comment_popup");
 var changelog_popup = document.getElementById("changelog_popup");
