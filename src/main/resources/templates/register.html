@@ -25,16 +25,16 @@
             <label for="username">Přezdívka:</label>
             <input th:field="*{username}" type="text" id="username" name="username" required><br>
 
+            <label for="email">Email:</label>
+            <input th:field="*{email}" type="email" id="email" name="email" required><br>
+
             <label for="password">Heslo:</label>
             <input th:field="*{password}" type="password" id="password" name="password" required><br>
 
             <label for="password">Potvrď heslo:</label>
             <input type="password" id="confirm" name="password" required><br>
 
-            <label for="email">Email:</label>
-            <input th:field="*{email}" type="email" id="email" name="email" required><br>
-
-            <input type="submit" value="REGISTROVAT" class="submit">
+            <button type="submit" class="submit">REGISTROVAT</button>
         </form>
     </div>
     <div class="image-section">
