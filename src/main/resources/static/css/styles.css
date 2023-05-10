@@ -369,7 +369,6 @@ label {
 
 .novinka {
 
-    background: #4e4e4e;
     margin-bottom: 1.5rem;
     padding: 0.8rem;
     list-style-type: square;
@@ -485,7 +484,9 @@ label {
 #videos_list {
 
     display: flex;
-    flex: wrap;
+    flex-wrap: wrap;
+
+    }
 
 }
 
@@ -604,6 +605,48 @@ iframe {
     margin-top: 2rem;
     width: 100%;
     height: 46%;
+
+}
+
+.global_news {
+
+    width: 21rem;
+    text-align: center;
+    height: 380px;
+    text-decoration: none;
+    color: white;
+    background: #4e4e4e;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+
+
+}
+
+.global_news img {
+
+    width: 100%;
+}
+
+.global_news p {
+
+    position: absolute;
+       padding: 0.3rem;
+
+}
+
+#global_news {
+
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+}
+
+#thumbnail {
+
+    margin-top: 1.5rem;
+    margin-left: 0.7rem;
 
 }
 

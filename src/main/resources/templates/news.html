@@ -21,17 +21,47 @@
 </header>
 <main>
     <h1>Novinky</h1>
-    <ul class="novinka">
-        <li th:each="newsItem : ${news}">
-            <h2 th:text="${newsItem.headline}"></h2>
-            <p th:text="${newsItem.releaseDate}"></p>
-            <p th:text="${newsItem.author}"></p>
-            <p th:text="${newsItem.description}"></p>
-        </li>
-    </ul>
+    <section id="global_news" class="novinka">
+        <section th:each="newsItem : ${news}">
+            <article th:if="${newsItem.modId} != null"  class="global_news">
+                <img th:if="${newsItem.imagePath} != null" th:src="${newsItem.imagePath}">
+                <h3 th:text="${newsItem.releaseDate}"></h3>
+                <h3 th:text="${newsItem.author}"></h3>
+                <h3 th:text="${newsItem.headline}"></h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibu...</p>
+                <a th:text="'Read More'" th:href="'/games/'+${newsItem.modId}"></a>
+            </article>
+            <article th:if="${newsItem.modId} == null"  class="global_news" onclick="show_popup(show_news)">
+                <img th:if="${newsItem.imagePath} != null" th:src="${newsItem.imagePath}">
+                <h3 th:text="${newsItem.releaseDate}"></h3>
+                <h3 th:text="${newsItem.author}"></h3>
+                <h3 th:text="${newsItem.headline}"></h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibu...</p>
+            </article>
+        </section>
+    </section>
 </main>
 <footer>
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
 </footer>
+
+<script>
+
+var show_news = document.getElementById("show_news");
+
+function show_popup(popup) {
+
+    popup.style.display = "block";
+
+}
+
+function close_popup(popup) {
+
+    popup.style.display = "none";
+
+}
+
+</script>
+
 </body>
 </html>
