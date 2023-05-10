@@ -2,7 +2,7 @@
 <html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Registrace</title>
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -19,27 +19,27 @@
         </ul>
     </nav>
 </header>
-<main>
-    <h1>Register</h1>
-    <form method="post" th:action="@{/register}" th:object="${user}">
-        <div>
-            <label>Username:</label>
-            <input required th:field="*{username}" type="text">
-        </div>
-        <div>
-            <label>Email:</label>
-            <input required th:field="*{email}" type="email">
-        </div>
-        <div>
-            <label>Password:</label>
-            <input required th:field="*{password}" type="password">
-        </div>
-        <div>
-            <label>Confirm Password:</label>
-            <input name="confirmPassword" required type="password">
-        </div>
-        <button class="submit" type="submit">Register</button>
-    </form>
+<main class="login-container">
+    <div class="login-section">
+        <form method="post" th:action="@{/register}" th:object="${user}">
+            <label for="username">Přezdívka:</label>
+            <input th:field="*{username}" type="text" id="username" name="username" required><br>
+
+            <label for="password">Heslo:</label>
+            <input th:field="*{password}" type="password" id="password" name="password" required><br>
+
+            <label for="password">Potvrď heslo:</label>
+            <input type="password" id="confirm" name="password" required><br>
+
+            <label for="email">Email:</label>
+            <input th:field="*{email}" type="email" id="email" name="email" required><br>
+
+            <input type="submit" value="REGISTROVAT" class="submit">
+        </form>
+    </div>
+    <div class="image-section">
+        <img src="img/big-image.jpg" alt="Big Image">
+    </div>
 </main>
 </body>
 </html>
