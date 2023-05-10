@@ -317,7 +317,7 @@ label {
 
 }
 
-#submit {
+.submit {
 
     margin-top: 1rem;
     width: 20rem;
@@ -604,6 +604,39 @@ iframe {
     margin-top: 2rem;
     width: 100%;
     height: 46%;
+
+}
+
+.global_news {
+
+    width: 21rem;
+        text-align: center;
+        height: 380px;
+        text-decoration: none;
+        color: white;
+        background: #4e4e4e;
+        position: relative;
+        padding: 0;
+
+}
+
+.global_news img {
+
+    width: 100%;
+}
+
+.global_news p {
+
+    position: absolute;
+       bottom: 0.2rem;
+       padding: 0.3rem;
+
+}
+
+#global_news {
+
+        display: flex;
+            justify-content: space-evenly;
 
 }
 

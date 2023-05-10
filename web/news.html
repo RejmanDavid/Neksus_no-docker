@@ -19,24 +19,59 @@
 </header>
 <main>
 
-    <ul class="novinka">
+    <section id="global_news">
 
-        <h3>2021-1-4</h3>
-        <li>Novinka</li>
+        <article class="global_news">
 
-    </ul>
+            <img src="desktop-1920x1080.jpg" onclick="show_popup(B)">
+            <h3>2021-1-4</h3>
+            <h3>admin</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
-    <ul class="novinka">
+        </article>
 
-        <h3>2021-1-4</h3>
-        <li>Mód <a href="Games/Skyrim_Mods/a.html"> SkyUI </a> vydal nový soubor</li>
+        <article class="global_news" onclick="show_popup(A)">
 
-    </ul>
+            <img src="desktop-1920x1080.jpg">
+            <h3>2021-1-4</h3>
+            <h3>admin</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
+        </article>
+
+        <section class="popup" style="display: none;">
+
+            <span class="close" onclick="close_popup(B)">&times;</span>
+            <h3>admin:</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
+
+        </section>
+
+    </section>
 
 </main>
 <footer>
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
 </footer>
+
+<script>
+
+    function show_popup(text) {
+
+    document.getElementsByClassName("popup").style.display = "block";
+
+}
+
+function close_popup(text) {
+
+    document.getElementsByClassName("popup").style.display = "none";
+
+}
+
+
+
+</script>
+
+
 </body>
 </html>
