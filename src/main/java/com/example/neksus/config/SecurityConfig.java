@@ -13,7 +13,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/register", "/login", "/", "/news", "/games/**", "/mods/**", "/modDetails/**", "/css/**", "/img/**", "/js/**").permitAll()
+                .requestMatchers("/error", "/register", "/login", "/", "/news", "/games/**", "/mods/**", "/modDetails/**", "/css/**", "/img/**", "/js/**").permitAll()
                 .requestMatchers("/dashboard").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
