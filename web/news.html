@@ -24,16 +24,16 @@
 
     <section id="global_news">
 
-        <article class="global_news">
+        <article class="global_news" onclick="show_popup(show_news)">
 
-            <img src="desktop-1920x1080.jpg" onclick="show_popup()">
+            <img src="desktop-1920x1080.jpg">
             <h3>2021-1-4</h3>
             <h3>admin</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
         </article>
 
-        <article class="global_news" onclick="show_popup()">
+        <article class="global_news" onclick="show_popup(show_news)">
 
             <img src="desktop-1920x1080.jpg">
             <h3>2021-1-4</h3>
@@ -44,9 +44,9 @@
 
         <section class="popup" id="show_news" style="display: none;">
 
-            <span class="close" onclick="close_popup()">&times;</span>
+            <span class="close" onclick="close_popup(show_news)">&times;</span>
             <h3>admin:</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
+            <p id="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
         </section>
 
@@ -59,15 +59,17 @@
 
 <script>
 
-    function show_popup() {
+var show_news = document.getElementById("show_news");
 
-    document.getElementsById("show_news").style.display = "block";
+function show_popup(popup) {
+
+    popup.style.display = "block";
 
 }
 
-function close_popup() {
+function close_popup(popup) {
 
-    document.getElementsById("show_news").style.display = "none";
+    popup.style.display = "none";
 
 }
 

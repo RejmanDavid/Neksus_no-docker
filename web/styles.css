@@ -616,13 +616,15 @@ iframe {
 .global_news {
 
     width: 21rem;
-        text-align: center;
-        height: 380px;
-        text-decoration: none;
-        color: white;
-        background: #4e4e4e;
-        position: relative;
-        padding: 0;
+    text-align: center;
+    height: 380px;
+    text-decoration: none;
+    color: white;
+    background: #4e4e4e;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+
 
 }
 
@@ -643,6 +645,13 @@ iframe {
 
         display: flex;
             justify-content: space-evenly;
+
+}
+
+#thumbnail {
+
+    margin-top: 1.5rem;
+    margin-left: 0.7rem;
 
 }
 

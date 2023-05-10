@@ -20,14 +20,30 @@
       </ul>
     </nav>
   </header>
-  <main>
 
-    <section id="select">
-      <button onclick="new_mod()">Přidej nový mod</button>
-    </section>
+    <main id="mod">
 
-  </main>
-  <footer>
+      <br>
+      <label for="mod_name">Název modu:</label>
+      <input type="text" id="mod_name">
+      <br>
+
+      <label for="thumbnail">Úvodní obrázek:</label>
+      <input type="file" id="thumbnail" value="Úvodní obrázek" accept="image/*">
+
+      <textarea id="edit_headline">Úvodní text</textarea>
+
+      <textarea id="edit_description">
+
+          Popis modu:
+
+        </textarea>
+
+      <input type="submit" value="PŘIDAT" class="submit" style="float: right; margin-top: 1rem;">
+
+    </main>
+
+    <footer>
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
   </footer>
 </body>
