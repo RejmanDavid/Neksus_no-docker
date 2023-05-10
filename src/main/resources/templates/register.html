@@ -22,11 +22,14 @@
 <main class="login-container">
     <div class="login-section">
         <form method="post" th:action="@{/register}" th:object="${user}">
-            <label for="username">Username:</label>
+            <label for="username">Přezdívka:</label>
             <input th:field="*{username}" type="text" id="username" name="username" required><br>
 
-            <label for="password">Password:</label>
+            <label for="password">Heslo:</label>
             <input th:field="*{password}" type="password" id="password" name="password" required><br>
+
+            <label for="password">Potvrď heslo:</label>
+            <input type="password" id="confirm" name="password" required><br>
 
             <label for="email">Email:</label>
             <input th:field="*{email}" type="email" id="email" name="email" required><br>
