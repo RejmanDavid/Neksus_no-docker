@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New mod</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <img src="/img/17085531.png">
+        <ul>
+            <li><a href="/">Hry</a></li>
+            <li><a href="/news">Novinky</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/create">Create</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Create News</h1>
+    <form method="post" th:action="@{/news/create}">
+        <input name="author" th:value="${#authentication.name}" type="hidden"/>
+        <label for="headline">Headline:</label>
+        <input id="headline" name="headline" required type="text"/><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br>
+        <label for="imagePath">Image Url:</label>
+        <input id="imagePath" name="imagePath" required type="text"/><br>
+        <input class="submit" type="submit" value="Create Mod"/>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+</footer>
+</body>
+</html>
