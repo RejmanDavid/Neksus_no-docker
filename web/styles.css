@@ -333,6 +333,12 @@ label {
 
 }
 
+.image-section img {
+
+    width: 100%;
+
+}
+
 #changes_list {
 
     margin-top: 0;

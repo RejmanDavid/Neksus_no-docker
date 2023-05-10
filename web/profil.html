@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Profil</title>
+    <title>Profil X</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,28 +12,37 @@
         <ul>
             <li><a href="index.html">Hry</a></li>
             <li><a href="news.html">Novinky</a></li>
-            <li><a href="profil.html">Profil</a></li>
             <li><a href="upload.html">Upload</a></li>
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="login.html">Přihlásit se</a></li>
+            <li><a href="registration.html">Zaregistrovat se</a></li>
+
         </ul>
     </nav>
 </header>
 
 <main class="login-container">
     <div class="login-section">
-        <form action="/login" method="post">
-            <label for="username">Jméno: </label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">Heslo: </label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <input type="submit" value="LOGIN" class="submit">
+        <h1>Změna údajů</h1>
+
+        <form action="#" method="post">
+            <label for="name">Přezdívka:</label>
+            <input type="text" id="name" name="name" value="John Doe"><br>
+
+            <label for="password">Heslo:</label>
+            <input type="password" id="password" name="password"><br>
+
+            <label for="confirm-password">Potvrď heslo:</label>
+            <input type="password" id="confirm-password" name="confirm-password"><br>
+
+            <input type="submit" value="Save Changes" class="submit">
         </form>
     </div>
     <div class="image-section">
         <img src="big-image.jpg" alt="Big Image">
     </div>
 </main>
+
 
 <footer>
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
