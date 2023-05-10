@@ -26,14 +26,14 @@
 
         <article class="global_news">
 
-            <img src="desktop-1920x1080.jpg" onclick="show_popup(B)">
+            <img src="desktop-1920x1080.jpg" onclick="show_popup()">
             <h3>2021-1-4</h3>
             <h3>admin</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
         </article>
 
-        <article class="global_news" onclick="show_popup(A)">
+        <article class="global_news" onclick="show_popup()">
 
             <img src="desktop-1920x1080.jpg">
             <h3>2021-1-4</h3>
@@ -42,9 +42,9 @@
 
         </article>
 
-        <section class="popup" style="display: none;">
+        <section class="popup" id="show_news" style="display: none;">
 
-            <span class="close" onclick="close_popup(B)">&times;</span>
+            <span class="close" onclick="close_popup()">&times;</span>
             <h3>admin:</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Duis risus.</p>
 
@@ -59,22 +59,19 @@
 
 <script>
 
-    function show_popup(text) {
+    function show_popup() {
 
-    document.getElementsByClassName("popup").style.display = "block";
-
-}
-
-function close_popup(text) {
-
-    document.getElementsByClassName("popup").style.display = "none";
+    document.getElementsById("show_news").style.display = "block";
 
 }
 
+function close_popup() {
 
+    document.getElementsById("show_news").style.display = "none";
+
+}
 
 </script>
-
 
 </body>
 </html>
