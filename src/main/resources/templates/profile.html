@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <img src="/img/17085531.png">
+        <ul>
+            <li><a href="/">Hry</a></li>
+            <li><a href="/news">Novinky</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/create">Create</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>User Info</h1>
+    <p>Username: <span th:text="${user.username}"></span></p>
+    <p>Email: <span th:text="${user.email}"></span></p>
+
+    <h2>Edit User Info</h2>
+
+    <form method="post" th:action="@{/profile/username}" th:object="${user}">
+        <label for="username">Username:</label>
+        <input id="username" name="username" placeholder="Username" th:value="${user.username}" type="text"/>
+        <input class="submit" type="submit" value="Update Username"/>
+    </form>
+
+    <form method="post" th:action="@{/profile/password}" th:object="${user}">
+        <label for="password">Password:</label>
+        <input id="password" name="password" placeholder="Password" type="password"/>
+        <input class="submit" type="submit" value="Update Password"/>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+</footer>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>New mod</title>
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -20,26 +20,21 @@
     </nav>
 </header>
 <main>
-    <h1>Register</h1>
-    <form method="post" th:action="@{/register}" th:object="${user}">
-        <div>
-            <label>Username:</label>
-            <input required th:field="*{username}" type="text">
+    <h1>Mods</h1>
+    <section id="mod_list">
+        <div class="mod" th:each="mods : ${mods}">
+            <a th:href="@{'/games/' + ${mods.gameId} + '/' + ${mods.modId}}" th:text="${mods.modName}">
+                <h2 th:text="${mods.modName}"></h2>
+                <p th:text="${mods.description}"></p>
+                <p th:text="${'Author: ' + mods.author}"></p>
+                <p th:text="${'Published Date: ' + mods.datePublished}"></p>
+                <p th:text="${'Track Count: ' + mods.trackCount}"></p>
+            </a>
         </div>
-        <div>
-            <label>Email:</label>
-            <input required th:field="*{email}" type="email">
-        </div>
-        <div>
-            <label>Password:</label>
-            <input required th:field="*{password}" type="password">
-        </div>
-        <div>
-            <label>Confirm Password:</label>
-            <input name="confirmPassword" required type="password">
-        </div>
-        <button class="submit" type="submit">Register</button>
-    </form>
+    </section>
 </main>
+<footer>
+    <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+</footer>
 </body>
 </html>

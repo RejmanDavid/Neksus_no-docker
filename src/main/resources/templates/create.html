@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New mod</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <img src="/img/17085531.png">
+        <ul>
+            <li><a href="/">Hry</a></li>
+            <li><a href="/news">Novinky</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/create">Create</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Create New Mod</h1>
+    <form method="post" th:action="@{/mods/create}">
+        <input name="author" th:value="${#authentication.name}" type="hidden"/>
+        <label for="modName">Mod Name</label>
+        <input id="modName" name="modName" required type="text"/>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="trackCount">Track Count</label>
+        <input id="trackCount" name="trackCount" required type="number"/>
+        <label for="gameId">Game</label>
+        <select id="gameId" name="gameId" required>
+            <option disabled selected value="">Select a game</option>
+            <option th:each="game : ${games}" th:text="${game.name}" th:value="${game.id}"></option>
+        </select>
+        <input class="submit" type="submit" value="Create Mod"/>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
+</footer>
+</body>
+</html>

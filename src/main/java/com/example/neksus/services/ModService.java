@@ -35,4 +35,8 @@ public class ModService {
     public boolean deleteMod(Long modId) {
         return modDAO.deleteMod(modId);
     }
+
+    public List<Mod> getModsByGameId(Long gameId) {
+        return modDAO.getModsByGameId(gameId);
+    }
 }

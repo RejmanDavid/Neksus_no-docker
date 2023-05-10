@@ -57,4 +57,9 @@ public class ModDAO {
         int rowsAffected = jdbcTemplate.update(sql, modId);
         return rowsAffected > 0;
     }
+
+    public List<Mod> getModsByGameId(Long gameId) {
+        String sql = "SELECT * FROM N_MOD WHERE GAME_ID = ?";
+        return jdbcTemplate.query(sql, modRowMapper, gameId);
+    }
 }

@@ -13,13 +13,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/register", "/login").permitAll()
-                .requestMatchers("/users").hasRole("ADMIN")
+                .requestMatchers("/register", "/login", "/", "/news", "/games/**", "/mods/**", "/modDetails/**", "/css/**", "/img/**", "/js/**").permitAll()
+                .requestMatchers("/dashboard").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()

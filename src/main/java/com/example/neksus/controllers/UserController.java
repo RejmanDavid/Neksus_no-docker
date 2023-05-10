@@ -3,69 +3,61 @@ package com.example.neksus.controllers;
 import com.example.neksus.models.User;
 import com.example.neksus.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/users")
+@Controller
 public class UserController {
 
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    private UserService userService;
-
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-        Optional<User> optionalUser = userService.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/profile")
+    public String showUserInfo(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = auth.getName();
+
+        User user = userService.findByEmail(currentUsername).orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+
+        model.addAttribute("user", user);
+        return "profile";
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        try {
-            User createdUser = userService.create(user);
-            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PostMapping("/profile/username")
+    public String updateUsername(@RequestParam("username") String newUsername) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentEmail = auth.getName();
+
+        User user = userService.findByEmail(currentEmail).orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+
+        user.setUsername(newUsername);
+
+        userService.update(user);
+        return "redirect:/profile";
     }
 
-    @PutMapping("/{email}")
-    public ResponseEntity<Void> updateUser(@PathVariable String email, @RequestBody User user) {
-        user.setEmail(email);
-        try {
-            boolean updated = userService.update(user);
-            if (updated) {
-                return new ResponseEntity<>(HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    @PostMapping("/profile/password")
+    public String updatePassword(@RequestParam("password") String newPassword) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentEmail = auth.getName();
 
-    @DeleteMapping("/{email}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String email) {
-        boolean deleted = userService.delete(email);
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        User user = userService.findByEmail(currentEmail).orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+
+        userService.update(user);
+        return "redirect:/profile";
     }
 }
