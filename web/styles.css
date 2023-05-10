@@ -491,7 +491,9 @@ label {
 #videos_list {
 
     display: flex;
-    flex: wrap;
+    flex-wrap: wrap;
+
+    }
 
 }
 
@@ -644,7 +646,8 @@ iframe {
 #global_news {
 
         display: flex;
-            justify-content: space-evenly;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
 
 }
 
