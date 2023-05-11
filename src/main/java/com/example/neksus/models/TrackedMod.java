@@ -3,7 +3,7 @@ package com.example.neksus.models;
 public class TrackedMod {
     private Long id;
     private Long modId;
-    private Long userId;
+    private String userId;
 
     // Getters
     public Long getId() {
@@ -23,11 +23,11 @@ public class TrackedMod {
         this.modId = modId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

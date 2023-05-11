@@ -16,15 +16,21 @@ public class ModController {
     private final FilesService filesService;
     private final NewsService newsService;
     private final VideoService videoService;
+    private final CommentService commentService;
+    private final TrackedModService trackedModService;
+    private final UserService userService;
 
     @Autowired
-    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService) {
+    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService, CommentService commentService, TrackedModService trackedModService, UserService userService) {
         this.modService = modService;
         this.gameService = gameService;
         this.changelogsService = changelogsService;
         this.filesService = filesService;
         this.newsService = newsService;
         this.videoService = videoService;
+        this.commentService = commentService;
+        this.trackedModService = trackedModService;
+        this.userService = userService;
     }
 
     @RequestMapping("/games/{gameId}")
@@ -40,6 +46,7 @@ public class ModController {
         model.addAttribute("files", filesService.getFilesByModId(modId));
         model.addAttribute("news", newsService.getNewsByModId(modId));
         model.addAttribute("videos", videoService.getVideosByModId(modId));
+        model.addAttribute("comments", commentService.getCommentsByModId(modId));
         return "modDetails";
     }
 
@@ -61,4 +68,6 @@ public class ModController {
         }
         return "redirect:/";
     }
+
+
 }

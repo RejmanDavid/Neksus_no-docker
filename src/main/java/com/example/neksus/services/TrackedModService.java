@@ -40,6 +40,15 @@ public class TrackedModService {
         }
     }
 
+    public boolean followMod(String userId, Long modId) {
+        TrackedMod trackedMod = new TrackedMod();
+        trackedMod.setUserId(userId);
+        trackedMod.setModId(modId);
+        // It's better to generate a new unique ID for trackedMod here
+        // trackedMod.setId(generateNewId()); // pseudo code
+        return addTrackedMod(trackedMod);
+    }
+
     public boolean deleteTrackedMod(Long id) {
         return trackedModDAO.deleteTrackedMod(id);
     }
@@ -50,7 +59,7 @@ public class TrackedModService {
             return false;
         }
 
-        if (trackedMod.getUserId() == null || trackedMod.getUserId() <= 0) {
+        if (trackedMod.getUserId() == null || trackedMod.getUserId().isEmpty()) {
             return false;
         }
 
