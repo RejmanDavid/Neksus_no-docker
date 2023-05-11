@@ -42,7 +42,7 @@ public class ModDAO {
 
     public boolean insertMod(Mod mod) {
         String sql = "INSERT INTO N_MOD (MOD_ID, MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), mod.getThumbnailImageId(), mod.getTrackCount());
+        int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), 1, 0);
         return rowsAffected > 0;
     }
 

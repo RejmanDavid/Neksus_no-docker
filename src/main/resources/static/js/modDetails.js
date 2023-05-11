@@ -195,3 +195,30 @@ async function submitComment() {
         alert("Error adding comment");
     }
 }
+
+async function submitChangelog() {
+    let modId = document.getElementById("mod_id").value;
+    let changelogText = document.getElementById("changelog_text").value;
+    let version = document.getElementById("version").value;
+
+    let changelog = {
+        modId: modId,
+        description: changelogText,
+        version: version
+    };
+
+    const response = await fetch('/addChangelog', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(changelog),
+    });
+
+    if (response.ok) {
+        console.log(changelog);
+        alert("Changelog added successfully");
+    } else {
+        alert("Error adding changelog");
+    }
+}
