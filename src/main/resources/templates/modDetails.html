@@ -13,7 +13,7 @@
             <li><a href="/">Hry</a></li>
             <li><a href="/news">Novinky</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
-            <li><a href="/create">Create</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline">
@@ -26,7 +26,7 @@
 
     <article id="top1">
 
-        <h2><a href="/"> Index </a> / <a href="/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
+        <h2><a href="/"> Index </a> / <a href="/games/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
         <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
 
         <h4 th:text="${'Author: ' + author.username}">mod.author</h4> <span

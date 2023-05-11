@@ -64,7 +64,7 @@ main {
     width: 76%;
     margin-top: 0;
     position: absolute;
-
+    min-height: 100%;
     top: 66px;
     color: white;
     padding: 1.5rem;
@@ -107,7 +107,7 @@ main {
     background: #4e4e4e;
     position: relative;
     margin-bottom: 2rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
 
 }
 
@@ -128,7 +128,7 @@ main {
 
     width: 16rem;
     text-align: center;
-    height: 21rem;
+    height: 22rem;
     text-decoration: none;
     color: white;
     background: #4e4e4e;
@@ -146,8 +146,18 @@ main {
 
 .mod h2{
 
-    display:inline-block;
-    vertical-align:middle;
+    margin: 0;
+    margin-top: 0.9rem;
+
+}
+
+nav ul form button {
+
+    height: 2.2rem;
+    width: 4.5rem;
+    text-align: center;
+        background-color: #80aaff;
+        color: white;
 
 }
 

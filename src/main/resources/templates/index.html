@@ -13,7 +13,7 @@
             <li><a href="/">Hry</a></li>
             <li><a href="/news">Novinky</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
-            <li><a href="/create">Create</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline">
