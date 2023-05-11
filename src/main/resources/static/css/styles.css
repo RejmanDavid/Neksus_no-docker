@@ -1,7 +1,7 @@
  body {
 
     margin: auto;
-    background: url("img/desktop-1920x1080.jpg") black no-repeat center top;
+    background: url("../img/desktop-1920x1080.jpg") black no-repeat center top;
 
 }
 
@@ -596,7 +596,7 @@ iframe {
 
 #edit_headline {
 
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 100%;
 
 }
@@ -605,7 +605,8 @@ iframe {
 
     margin-top: 2rem;
     width: 100%;
-    height: 46%;
+    height: 11rem;
+    margin-bottom: 0.7rem;
 
 }
 
