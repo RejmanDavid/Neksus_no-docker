@@ -16,13 +16,18 @@
             <li><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline">
+                <button type="submit" class="btn btn-link">Logout</button>
+            </form>
         </ul>
     </nav>
 </header>
 <main>
-    <h1>Novinky</h1>
-    <button class="upload_author_only" id="edit_mod" onclick="redirect()">Upravit Mod</button>
-    <section id="global_news" class="novinka">
+    <article id="news_top">
+        <h1>Novinky</h1>
+        <button class="upload_author_only" id="edit_news" onclick="redirect()">Upravit Mod</button>
+    </article>
+    <section id="global_news">
         <section th:each="newsItem : ${news}">
             <article th:if="${newsItem.modId} != null"  class="global_news">
                 <img th:if="${newsItem.imagePath} != null" th:src="${newsItem.imagePath}">

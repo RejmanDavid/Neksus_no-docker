@@ -16,6 +16,9 @@
             <li><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline">
+                <button type="submit" class="btn btn-link">Logout</button>
+            </form>
         </ul>
     </nav>
 </header>
@@ -32,7 +35,7 @@
             <input th:field="*{password}" type="password" id="password" name="password" required><br>
 
             <label for="password">Potvrď heslo:</label>
-            <input type="confirmPassword" id="confirm" name="password" required><br>
+            <input type="password" id="confirm" name="confirmPassword" required><br>
 
             <button type="submit" class="submit">REGISTROVAT</button>
         </form>
