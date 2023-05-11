@@ -204,12 +204,13 @@ main {
 
 }
 
-#track button {
+#track form input {
 
-    width: 5.5rem;
+    width: 6.5rem;
     height:3rem;
     background-color: #80aaff;
     color: white;
+    font-size: 1.05rem;
 
 }
 
@@ -257,7 +258,7 @@ main {
     text-align: center;
     background-color: #80aaff;
     color: white;
-    height: auto;
+    height: 2.25rem;
 
 }
 
@@ -378,6 +379,8 @@ label {
     list-style-type: square;
 
 }
+
+#req_list {}
 
 .headline_comment {
 

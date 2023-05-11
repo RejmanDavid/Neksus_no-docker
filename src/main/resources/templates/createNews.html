@@ -23,18 +23,24 @@
     </nav>
 </header>
 
-<main>
-    <h1>Create News</h1>
+<main class="login-container">
+    <div class="login-section">
+    <h1>Vytvoř novinku:</h1>
     <form method="post" th:action="@{/news/create}">
         <input name="author" th:value="${#authentication.name}" type="hidden"/>
         <label for="headline">Headline:</label>
         <input id="headline" name="headline" required type="text"/><br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea><br>
         <label for="imagePath">Image Url:</label>
         <input id="imagePath" name="imagePath" required type="text"/><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required style="height: 9rem; width: 90%;"></textarea><br>
         <input class="submit" type="submit" value="Create Mod"/>
     </form>
+
+    </div>
+    <div class="image-section">
+        <img src="img/big-image.jpg" alt="Big Image">
+    </div>
 </main>
 <footer>
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>

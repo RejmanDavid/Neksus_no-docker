@@ -117,21 +117,6 @@ function dependecny() {
     }
 }
 
-function clear() {
-
-    document.getElementById("description").style.display = "none";
-    document.getElementById("changelog").style.display = "none";
-    document.getElementById("files").style.display = "none";
-    document.getElementById("news").style.display = "none";
-    document.getElementById("user_images").style.display = "none";
-    document.getElementById("videos").style.display = "none";
-    document.getElementById("comments").style.display = "none";
-    document.getElementById("dependecny").style.display = "none";
-
-    description();
-
-}
-
 var comment_popup = document.getElementById("comment_popup");
 var changelog_popup = document.getElementById("changelog_popup");
 var file_popup = document.getElementById("file_popup");

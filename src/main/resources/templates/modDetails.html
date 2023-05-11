@@ -5,7 +5,7 @@
     <title>New mod</title>
     <link href="/css/styles.css" rel="stylesheet">
 </head>
-<body onload="clear()">
+<body>
 <header>
     <nav>
         <img src="/img/17085531.png">
@@ -22,29 +22,28 @@
 <main id="mod">
 
     <article id="top1">
-        <h1 th:text="${mod.modName}"></h1>
 
-        <h2><a href="../../index.html"> Index </a> / <a href="../skyrim_mods.html">Skyrim</a> / SkyUI</h2>
+        <h2><a href="/"> Index </a> / <a href="/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
         <button class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
 
         <h4>Uploadnuto uživatelem <a href="../../Users/schlangster.html"
-                                     th:text="${'Author: ' + mod.author}">mod.author</a> <span
-                th:text="${'Dne: ' + mod.datePublished}"></span></h4>
+                                     th:text="${mod.author}">mod.author</a> <span
+                th:text="${'dne: ' + mod.datePublished}"></span></h4>
     </article>
 
     <article id="top2">
 
-        <h1>SkyUI</h1>
+        <h1 th:text="${mod.modName}"></h1>
         <article id="track">
-            <h3 th:text="${'Track Count: ' + mod.trackCount}"></h3>
+            <h3 th:text="${'Počet sledování: ' + mod.trackCount}"></h3>
             <form action="#" method="post" th:action="@{/mods/{modId}/follow(modId=${mod.modId})}">
-                <input type="submit" value="Follow"/>
+                <input type="submit" value="SLEDOVAT"/>
             </form>
         </article>
     </article>
 
     <article id="images">
-        asd
+        <img src="img/big-image.jpg">
     </article>
 
     <article id="nav2">
@@ -62,7 +61,7 @@
         <p th:text="${mod.description}"></p>
     </section>
 
-    <section id="changelog">
+    <section id="changelog" style="display: none;">
 
         <button class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou
             aktualizaci
@@ -94,7 +93,7 @@
 
     </section>
 
-    <section id="files">
+    <section id="files" style="display: none;">
 
         <button class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
 
@@ -129,19 +128,19 @@
 
     </section>
 
-    <section id="news">
+    <section id="news" style="display: none;">
 
         <button class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
 
         <article class="list" id="list_of_news">
 
             <ul class="novinka" th:each="newsItem : ${news}">
-                <div class="headline_comment">
-                    <h3 th:text="${newsItem.headline}"></h3>
-                    <p>Release Date: <span th:text="${newsItem.releaseDate}"></span></p>
+                <article class="headline_comment">
+                    <h4 th:text="${newsItem.headline}"></h4>
+                    <p>Datum přidání: <span th:text="${newsItem.releaseDate}"></span></p>
                     <p>Author: <span th:text="${newsItem.author}"></span></p>
-                </div>
-                <p th:text="${newsItem.description}"></p>
+                </article>
+                <li th:text="${newsItem.description}"></li>
             </ul>
 
         </article>
@@ -159,7 +158,7 @@
 
     </section>
 
-    <section id="user_images">
+    <section id="user_images" style="display: none;">
 
         <button class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku
         </button>
@@ -179,7 +178,7 @@
 
     </section>
 
-    <section id="videos">
+    <section id="videos" style="display: none;">
 
         <button class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
 
@@ -213,19 +212,21 @@
 
     </section>
 
-    <section id="comments">
+    <section id="comments" style="display: none;">
 
-        <div class="comment_list" id="list">
-            <ul>
-                <li class="comment" th:each="comment : ${comments}">
-                    <div class="created">
-                        <div th:text="${comment.userId}"></div>
-                        <div th:text="${#dates.format(comment.dateCommented, 'dd-MM-yyyy HH:mm')}"></div>
-                    </div>
+        <button  class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Přidat komentář</button>
+
+        <article class="list" id="comment_list">
+
+            <article class="comment" th:each="comment : ${comments}">
+                    <article class="created">
+                        <p th:text="${comment.userId}"></p>
+                        <p th:text="${#dates.format(comment.dateCommented, 'dd-MM-yyyy HH:mm')}"></p>
+                    </article>
                     <p class="content" th:text="${comment.commentText}"></p>
-                </li>
-            </ul>
-        </div>
+            </article>
+
+        </article>
 
         <div>
             <div id="comment_section"></div>
@@ -235,12 +236,20 @@
         </div>
     </section>
 
+    <section id="comment_popup" class="popup" style="display: none;">
 
-    <section id="dependecny">
+        <span class="close" onclick="close_popup(comment_popup)">&times;</span>
+        <label for="comment_text_send">Komentář:</label>
+        <textarea id="comment_text_send"></textarea>
+        <button onclick="submitComment()" class="upload_user">Přidej</button>
+
+    </section>
+
+    <section id="dependecny" style="display: none;">
 
         <button class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
 
-        <article class="list" id="mod_list">
+        <article class="list" id="req_list">
 
             <h3>List vyžadovaných modů:</h3>
 
