@@ -44,8 +44,8 @@
         </article>
     </article>
 
-    <article id="images">
-        <img src="img/big-image.jpg">
+    <article  id="images">
+        <img th:each="image : ${images}" th:src="${image.imagePath}">
     </article>
 
     <article id="nav2">
@@ -100,14 +100,6 @@
         <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
 
         <article class="list" id="files_list">
-
-            <article class="souboros">
-
-                <h3>SkyUI</h3>
-                <h3>5.2.4</h3>
-                <p>Vydáno: 2023-1-2</p>
-                <button>DOWNLOAD</button>
-            </article>
 
             <article class="souboros" th:each="file : ${files}">
                 <h3 th:text="${file.description}"></h3>

@@ -70,6 +70,7 @@ public class ModController {
         model.addAttribute("news", newsService.getNewsByModId(modId));
         model.addAttribute("videos", videoService.getVideosByModId(modId));
         model.addAttribute("comments", commentService.getCommentsByModId(modId));
+        model.addAttribute("images",imageService.getImagesByModId(modId));
         Optional<User> optional = userService.findByEmail(mod.getAuthor());
         if (optional.isPresent()){
             model.addAttribute("author",optional.get());
