@@ -3,6 +3,7 @@ package com.example.neksus.controllers;
 import com.example.neksus.models.Mod;
 import com.example.neksus.models.News;
 import com.example.neksus.models.User;
+import com.example.neksus.services.ModService;
 import com.example.neksus.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

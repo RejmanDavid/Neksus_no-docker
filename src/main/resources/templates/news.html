@@ -35,7 +35,7 @@
                 <h3 th:text="${newsItem.releaseDate}"></h3>
                 <h3 th:text="${newsItem.headline}"></h3>
                 <p th:text="${newsItem.description}"></p>
-                <a th:text="'Read More'" th:href="'/games/'+${newsItem.modId}"></a>
+                <a th:text="'Read More'" th:href="'/games/1/'+${newsItem.modId}"></a>
             </article>
             <article th:if="${newsItem.modId} == null"  class="global_news" onclick="show_popup(show_news)">
                 <img th:if="${newsItem.imagePath} != null" th:src="${newsItem.imagePath}">
