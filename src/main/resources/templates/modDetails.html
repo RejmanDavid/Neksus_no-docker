@@ -27,8 +27,8 @@
         <h2><a href="../../index.html"> Index </a> / <a href="../skyrim_mods.html">Skyrim</a> / SkyUI</h2>
         <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
 
-        <h4>Uploadnuto uživatelem <b th:text="${'Author: ' + mod.author}">mod.author</b> <span
-                th:text="${'Dne: ' + mod.datePublished}"></span></h4>
+        <b th:text="${'Author: ' + author.username}">mod.author</b> <span
+                th:text="${'Dne: ' + mod.datePublished}"></span>
     </article>
 
     <article id="top2">

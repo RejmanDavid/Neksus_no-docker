@@ -61,12 +61,17 @@ public class ModController {
 
     @RequestMapping("/games/{gameId}/{modId}")
     public String getModById(@PathVariable("modId") Long modId, Model model) {
-        model.addAttribute("mod", modService.getModById(modId));
+        Mod mod = modService.getModById(modId);
+        model.addAttribute("mod",mod);
         model.addAttribute("changelogs", changelogsService.getChangelogsByModId(modId));
         model.addAttribute("files", filesService.getFilesByModId(modId));
         model.addAttribute("news", newsService.getNewsByModId(modId));
         model.addAttribute("videos", videoService.getVideosByModId(modId));
         model.addAttribute("comments", commentService.getCommentsByModId(modId));
+        Optional<User> optional = userService.findByEmail(mod.getAuthor());
+        if (optional.isPresent()){
+            model.addAttribute("author",optional.get());
+        }
         return "modDetails";
     }
 
