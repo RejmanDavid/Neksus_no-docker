@@ -25,10 +25,9 @@
         <h1 th:text="${mod.modName}"></h1>
 
         <h2><a href="../../index.html"> Index </a> / <a href="../skyrim_mods.html">Skyrim</a> / SkyUI</h2>
-        <button class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
 
-        <h4>Uploadnuto uživatelem <a href="../../Users/schlangster.html"
-                                     th:text="${'Author: ' + mod.author}">mod.author</a> <span
+        <h4>Uploadnuto uživatelem <b th:text="${'Author: ' + mod.author}">mod.author</b> <span
                 th:text="${'Dne: ' + mod.datePublished}"></span></h4>
     </article>
 
