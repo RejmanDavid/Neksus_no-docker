@@ -17,6 +17,7 @@ public class ChangelogsController {
 
     @PostMapping("/addChangelog")
     public ResponseEntity<?> addVideo(@RequestBody Changelogs changelog) {
+        // Call the addChangelog method from ChangelogService. If it returns true (changelog creation successful)
         if (changelogService.addChangelog(changelog)) {
             return ResponseEntity.ok().build();
         } else {
