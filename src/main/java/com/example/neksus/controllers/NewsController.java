@@ -22,6 +22,7 @@ public class NewsController {
         this.newsService = newsService;
     }
 
+    //shows view "news" with all the news
     @GetMapping("/news")
     public String getAllNews(Model model) {
         List<News> newsList = newsService.getAllNews();
@@ -29,11 +30,13 @@ public class NewsController {
         return "news";
     }
 
+    //shows page "createNews" for creating new news
     @RequestMapping("/news/create")
     public String getNewsCreatePage() {
         return "createNews";
     }
 
+    //receives news information from user and redirects them to the news page
     @PostMapping("/news/create")
     public String postNews(String author, String headline, String description,String imagePath) {
         News news = new News();

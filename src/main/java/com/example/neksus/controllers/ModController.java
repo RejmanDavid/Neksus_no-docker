@@ -41,6 +41,7 @@ public class ModController {
         this.imageService = imageService;
     }
 
+    //prepares mods, their thumbnails and authors and returns view "mods"
     @RequestMapping("/games/{gameId}")
     public String getModsByGameId(@PathVariable("gameId") Long gameId, Model model) {
         List<Mod> mods = modService.getModsByGameId(gameId);
@@ -59,6 +60,7 @@ public class ModController {
         return "mods";
     }
 
+    //prepares all detailed mod information and returns view "modDetails"
     @RequestMapping("/games/{gameId}/{modId}")
     public String getModById(@PathVariable("modId") Long modId, Model model) {
         Mod mod = modService.getModById(modId);
@@ -75,6 +77,7 @@ public class ModController {
         return "modDetails";
     }
 
+    //returns the "create" view for creating new mods
     @GetMapping("/create")
     public String showCreatePage(Model model) {
         model.addAttribute("mod", new Mod());
@@ -82,6 +85,7 @@ public class ModController {
         return "create";
     }
 
+    //recieves mod information from user and recirects them back to index
     @PostMapping("/mods/create")
     public String createMod(@ModelAttribute Mod mod, @RequestParam("gameId") Long gameId, Model model) {
         mod.setGameId(gameId); // set the gameId to the mod
