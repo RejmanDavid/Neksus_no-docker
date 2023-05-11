@@ -105,15 +105,16 @@
 
                 <h3>SkyUI</h3>
                 <h3>5.2.4</h3>
+                <p>Vydáno: 2023-1-2</p>
                 <button>DOWNLOAD</button>
             </article>
 
-            <li class="souboros" th:each="file : ${files}">
+            <article class="souboros" th:each="file : ${files}">
+                <h3 th:text="${file.description}"></h3>
                 <h3 th:text="${file.version}"></h3>
-                <p th:text="${file.description}"></p>
-                <p>Release Date: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
-                <p>File Path: <span th:text="${file.filePath}"></span></p>
-            </li>
+                <p>Vydáno: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
+                <a th:href="${file.filePath}" target="_blank"><button>DOWNLOAD</button></a>
+            </article>
 
         </article>
 
@@ -184,10 +185,11 @@
 
         <button sec:authorize="isAuthenticated()" class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
 
-        <div class="list" id="video_list" th:each="video : ${videos}">
+        <div class="list" id="video_list">
+            <article th:each="video : ${videos}">
             <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0" height="315"
                     th:src="${video.videoPath.replace('watch?v=', 'embed/')}"
-                    width="560"></iframe>
+                    width="560"></iframe></article>
         </div>
 
     </section>
