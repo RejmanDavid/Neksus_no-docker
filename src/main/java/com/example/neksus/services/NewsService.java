@@ -57,10 +57,6 @@ public class NewsService {
             throw new IllegalArgumentException("News image path is required");
         }
 
-        if (news.getReleaseDate() == null) {
-            throw new IllegalArgumentException("News release date is required");
-        }
-
         if (news.getAuthor() == null || news.getAuthor().trim().isEmpty()) {
             throw new IllegalArgumentException("News author is required");
         }
