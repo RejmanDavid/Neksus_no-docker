@@ -16,7 +16,7 @@ public class CommentDAO {
     private final RowMapper<Comment> commentRowMapper = (rs, rowNum) -> {
         Comment comment = new Comment();
         comment.setCommentId(rs.getLong("COMMENT_ID"));
-        comment.setUserId(rs.getString("USERS_ID"));
+        comment.setUserId(rs.getString("USER_ID"));
         comment.setModId(rs.getLong("MOD_ID"));
         comment.setCommentText(rs.getString("COMMENT_TEXT"));
         comment.setDateCommented(rs.getDate("DATE_COMMENTED"));
@@ -52,5 +52,10 @@ public class CommentDAO {
     public int deleteComment(Long commentId) {
         String sql = "DELETE FROM N_COMMENT WHERE COMMENT_ID = ?";
         return jdbcTemplate.update(sql, commentId);
+    }
+
+    public List<Comment> getCommentsByModId(Long modId) {
+        String sql = "SELECT * FROM N_COMMENT WHERE MOD_ID = ?";
+        return jdbcTemplate.query(sql, commentRowMapper, modId);
     }
 }

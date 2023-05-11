@@ -12,7 +12,8 @@ function description() {
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
 
-    }}
+    }
+}
 
 function changelog() {
     var x = document.getElementById("changelog");
@@ -26,7 +27,8 @@ function changelog() {
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
 
-    }}
+    }
+}
 
 function files() {
     var x = document.getElementById("files");
@@ -40,7 +42,8 @@ function files() {
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
 
-    }}
+    }
+}
 
 function news() {
     var x = document.getElementById("news");
@@ -54,7 +57,8 @@ function news() {
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
 
-    }}
+    }
+}
 
 function user_images() {
     var x = document.getElementById("user_images");
@@ -68,7 +72,8 @@ function user_images() {
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
 
-    }}
+    }
+}
 
 function videos() {
     var x = document.getElementById("videos");
@@ -81,7 +86,8 @@ function videos() {
         document.getElementById("user_images").style.display = "none";
         document.getElementById("comments").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
-    }}
+    }
+}
 
 function comments() {
     var x = document.getElementById("comments");
@@ -94,7 +100,8 @@ function comments() {
         document.getElementById("user_images").style.display = "none";
         document.getElementById("videos").style.display = "none";
         document.getElementById("dependecny").style.display = "none";
-    }}
+    }
+}
 
 function dependecny() {
     var x = document.getElementById("dependecny");
@@ -107,7 +114,8 @@ function dependecny() {
         document.getElementById("user_images").style.display = "none";
         document.getElementById("comments").style.display = "none";
         document.getElementById("videos").style.display = "none";
-    }}
+    }
+}
 
 function clear() {
 
@@ -174,4 +182,31 @@ function submitVideo() {
             alert('Failed to add video. Make sure the URL is valid and try again.');
         }
     });
+}
+
+async function submitComment() {
+    let modId = document.getElementById("mod_id").value;
+    let commentText = document.getElementById("comment_text").value;
+    let author = document.getElementById("author").value;
+
+    let comment = {
+        modId: modId,
+        commentText: commentText,
+        userId: author
+    };
+
+    const response = await fetch('/api/comments', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(comment),
+    });
+
+    if (response.ok) {
+        console.log(comment);
+        alert("Comment added successfully");
+    } else {
+        alert("Error adding comment");
+    }
 }

@@ -37,241 +37,240 @@
         <h1>SkyUI</h1>
         <article id="track">
             <h3 th:text="${'Track Count: ' + mod.trackCount}"></h3>
-            <button onclick="track()">SLEDOVAT</button>
+            <form action="#" method="post" th:action="@{/mods/{modId}/follow(modId=${mod.modId})}">
+                <input type="submit" value="Follow"/>
+            </form>
         </article>
-        </article>
+    </article>
 
-        <article id="images">
-            asd
-        </article>
+    <article id="images">
+        asd
+    </article>
 
-        <article id="nav2">
-            <button onclick="description()">Popis</button>
-            <button onclick="changelog()">Changelog</button>
-            <button onclick="files()">Soubory</button>
-            <button onclick="news()">Novinky</button>
-            <button onclick="user_images()">Uživatelské obrázky</button>
-            <button onclick="videos()">Videa</button>
-            <button onclick="comments()">Komentáře</button>
-            <button onclick="dependecny()">Požadavky</button>
-        </article>
+    <article id="nav2">
+        <button onclick="description()">Popis</button>
+        <button onclick="changelog()">Changelog</button>
+        <button onclick="files()">Soubory</button>
+        <button onclick="news()">Novinky</button>
+        <button onclick="user_images()">Uživatelské obrázky</button>
+        <button onclick="videos()">Videa</button>
+        <button onclick="comments()">Komentáře</button>
+        <button onclick="dependecny()">Požadavky</button>
+    </article>
 
-        <section id="description">
-            <p th:text="${mod.description}"></p>
-        </section>
+    <section id="description">
+        <p th:text="${mod.description}"></p>
+    </section>
 
-        <section id="changelog">
+    <section id="changelog">
 
-            <button class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou
-                aktualizaci
-            </button>
+        <button class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou
+            aktualizaci
+        </button>
 
-            <article class="list" id="changes_list">
+        <article class="list" id="changes_list">
 
-                <ul class="changelog">
+            <ul class="changelog">
 
-                    <li th:each="changelog : ${changelogs}">
-                        <h3 th:text="${changelog.version}"></h3>
-                        <p th:text="${changelog.description}"></p>
-                    </li>
-
-                </ul>
-
-            </article>
-
-        </section>
-
-        <section id="changelog_popup" class="popup" style="display: none;">
-
-            <span class="close" onclick="close_popup(changelog_popup)">&times;</span>
-            <label for="version">Verze:</label>
-            <input type="text" id="version">
-            <label for="changelog_text">Komentář:</label>
-            <textarea id="changelog_text"></textarea>
-            <button onclick="submitChangelog()" class="upload_user">Přidej</button>
-
-        </section>
-
-        <section id="files">
-
-            <button class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
-
-            <article class="list" id="files_list">
-
-                <article class="souboros">
-
-                    <h3>SkyUI</h3>
-                    <h3>5.2.4</h3>
-                    <button>DOWNLOAD</button>
-                </article>
-
-                <li class="souboros" th:each="file : ${files}">
-                    <h3 th:text="${file.version}"></h3>
-                    <p th:text="${file.description}"></p>
-                    <p>Release Date: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
-                    <p>File Path: <span th:text="${file.filePath}"></span></p>
+                <li th:each="changelog : ${changelogs}">
+                    <h3 th:text="${changelog.version}"></h3>
+                    <p th:text="${changelog.description}"></p>
                 </li>
 
+            </ul>
+
+        </article>
+
+    </section>
+
+    <section class="popup" id="changelog_popup" style="display: none;">
+
+        <span class="close" onclick="close_popup(changelog_popup)">&times;</span>
+        <label for="version">Verze:</label>
+        <input id="version" type="text">
+        <label for="changelog_text">Komentář:</label>
+        <textarea id="changelog_text"></textarea>
+        <button class="upload_user" onclick="submitChangelog()">Přidej</button>
+
+    </section>
+
+    <section id="files">
+
+        <button class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
+
+        <article class="list" id="files_list">
+
+            <article class="souboros">
+
+                <h3>SkyUI</h3>
+                <h3>5.2.4</h3>
+                <button>DOWNLOAD</button>
             </article>
 
-        </section>
+            <li class="souboros" th:each="file : ${files}">
+                <h3 th:text="${file.version}"></h3>
+                <p th:text="${file.description}"></p>
+                <p>Release Date: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
+                <p>File Path: <span th:text="${file.filePath}"></span></p>
+            </li>
 
-        <section id="file_popup" class="popup" style="display: none;">
+        </article>
 
-            <span class="close" onclick="close_popup(file_popup)">&times;</span>
-            <label for="file">Soubor:</label>
-            <input type="file" id="file">
-            <label for="file_text">Název:</label>
-            <input type="text" id="file_text">
-            <button onclick="submitFile()" class="upload_user">Přidej</button>
+    </section>
 
-        </section>
+    <section class="popup" id="file_popup" style="display: none;">
 
-        <section id="news">
+        <span class="close" onclick="close_popup(file_popup)">&times;</span>
+        <label for="file">Soubor:</label>
+        <input id="file" type="file">
+        <label for="file_text">Název:</label>
+        <input id="file_text" type="text">
+        <button class="upload_user" onclick="submitFile()">Přidej</button>
 
-            <button class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
+    </section>
 
-            <article class="list" id="list_of_news">
+    <section id="news">
 
-                <ul class="novinka" th:each="newsItem : ${news}">
-                    <div class="headline_comment">
-                        <h3 th:text="${newsItem.headline}"></h3>
-                        <p>Release Date: <span th:text="${newsItem.releaseDate}"></span></p>
-                        <p>Author: <span th:text="${newsItem.author}"></span></p>
-                    </div>
-                    <p th:text="${newsItem.description}"></p>
-                </ul>
+        <button class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
 
-            </article>
+        <article class="list" id="list_of_news">
 
-        </section>
+            <ul class="novinka" th:each="newsItem : ${news}">
+                <div class="headline_comment">
+                    <h3 th:text="${newsItem.headline}"></h3>
+                    <p>Release Date: <span th:text="${newsItem.releaseDate}"></span></p>
+                    <p>Author: <span th:text="${newsItem.author}"></span></p>
+                </div>
+                <p th:text="${newsItem.description}"></p>
+            </ul>
 
-        <section id="news_popup" class="popup" style="display: none;">
+        </article>
 
-            <span class="close" onclick="close_popup(news_popup)">&times;</span>
-            <label for="news_headline">Header:</label>
-            <input type="text" id="news_headline">
-            <label for="news_text">Text:</label>
-            <textarea id="news_text"></textarea>
-            <button onclick="submitNews()" class="upload_user">Přidej</button>
+    </section>
 
-        </section>
+    <section class="popup" id="news_popup" style="display: none;">
 
-        <section id="user_images">
+        <span class="close" onclick="close_popup(news_popup)">&times;</span>
+        <label for="news_headline">Header:</label>
+        <input id="news_headline" type="text">
+        <label for="news_text">Text:</label>
+        <textarea id="news_text"></textarea>
+        <button class="upload_user" onclick="submitNews()">Přidej</button>
 
-            <button class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku</button>
+    </section>
 
-            <article class="list" id="list_of_images">
-                <img src="SkyUI/4.webp">
-            </article>
+    <section id="user_images">
 
-        </section>
+        <button class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku
+        </button>
 
-        <section id="image_popup" class="popup" style="display: none;">
+        <article class="list" id="list_of_images">
+            <img src="SkyUI/4.webp">
+        </article>
 
-            <span class="close" onclick="close_popup(image_popup)">&times;</span>
-            <label for="image_link">Link na obrázek:</label>
-            <textarea id="image_link"></textarea>
-            <button onclick="submitImage()" class="upload_user">Přidej</button>
+    </section>
 
-        </section>
+    <section class="popup" id="image_popup" style="display: none;">
 
-        <section id="videos">
+        <span class="close" onclick="close_popup(image_popup)">&times;</span>
+        <label for="image_link">Link na obrázek:</label>
+        <textarea id="image_link"></textarea>
+        <button class="upload_user" onclick="submitImage()">Přidej</button>
 
-            <button class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
+    </section>
 
-            <div class="list" id="video_list" th:each="video : ${videos}">
-                <iframe width="560" height="315" th:src="${video.videoPath.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+    <section id="videos">
 
-        </section>
+        <button class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
 
-<!--        <section id="video_popup" class="popup" style="display: none;">-->
+        <div class="list" id="video_list" th:each="video : ${videos}">
+            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0" height="315"
+                    th:src="${video.videoPath.replace('watch?v=', 'embed/')}"
+                    width="560"></iframe>
+        </div>
 
-<!--            <span class="close" onclick="close_popup(video_popup)">&times;</span>-->
-<!--            <label for="video_link">Link na video:</label>-->
-<!--            <textarea id="video_link"></textarea>-->
-<!--            <button onclick="submitVideo()" class="upload_user">Přidej</button>-->
+    </section>
 
-<!--        </section>-->
+    <!--        <section id="video_popup" class="popup" style="display: none;">-->
 
-    <section id="video_popup" class="popup" style="display: none;">
+    <!--            <span class="close" onclick="close_popup(video_popup)">&times;</span>-->
+    <!--            <label for="video_link">Link na video:</label>-->
+    <!--            <textarea id="video_link"></textarea>-->
+    <!--            <button onclick="submitVideo()" class="upload_user">Přidej</button>-->
+
+    <!--        </section>-->
+
+    <section class="popup" id="video_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(video_popup)">&times;</span>
 
         <label for="video_link">Link na video:</label>
-        <input type="text" id="video_link" required />
+        <input id="video_link" required type="text"/>
 
-        <input th:value="${mod.modId}" type="hidden" id="mod_id" value="" />
+        <input id="mod_id" th:value="${mod.modId}" type="hidden" value=""/>
 
-        <button onclick="submitVideo()" class="upload_user">Přidej</button>
+        <button class="upload_user" onclick="submitVideo()">Přidej</button>
 
     </section>
 
-        <section id="comments">
+    <section id="comments">
 
-            <button  class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Přidat komentář</button>
+        <div class="comment_list" id="list">
+            <ul>
+                <li class="comment" th:each="comment : ${comments}">
+                    <div class="created">
+                        <div th:text="${comment.userId}"></div>
+                        <div th:text="${#dates.format(comment.dateCommented, 'dd-MM-yyyy HH:mm')}"></div>
+                    </div>
+                    <p class="content" th:text="${comment.commentText}"></p>
+                </li>
+            </ul>
+        </div>
 
-            <article class="list" id="comment_list">
-
-                <article class="comment">
-
-                    <article class="created">
-                        <p class="author">NNNNN</p>
-                        <p class="date">13.3.2022</p>
-                    </article>
-                    <p class="content">fffffffffffffffffffffffffffffff</p>
-
-                </article>
-
-            </article>
-
-        </section>
-
-        <section id="comment_popup" class="popup" style="display: none;">
-
-            <span class="close" onclick="close_popup(comment_popup)">&times;</span>
-            <label for="comment_text">Komentář:</label>
+        <div>
+            <div id="comment_section"></div>
+            <input id="author" name="author" th:value="${#authentication.name}" type="hidden"/>
             <textarea id="comment_text"></textarea>
-            <button onclick="submitComment()" class="upload_user">Přidej</button>
+            <button onclick="submitComment()">Submit Comment</button>
+        </div>
+    </section>
 
-        </section>
 
-        <section id="dependecny">
+    <section id="dependecny">
 
-            <button class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
+        <button class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
 
-            <article class="list" id="mod_list">
+        <article class="list" id="mod_list">
 
-                <h3>List vyžadovaných modů:</h3>
+            <h3>List vyžadovaných modů:</h3>
 
-                <article id="needed_mod_list">
+            <article id="needed_mod_list">
 
-                    <li>Unoficial Skyrim Patch</li>
-                    <li>SKSE</li>
-
-                </article>
-
-                <h3>List modů vyžadující tento:</h3>
-
-                <article id="required_by">
-
-                    <li>Maximum Carnage</li>
-
-                </article>
+                <li>Unoficial Skyrim Patch</li>
+                <li>SKSE</li>
 
             </article>
 
-        </section>
+            <h3>List modů vyžadující tento:</h3>
 
-        <section id="req_popup" class="popup" style="display: none;">
+            <article id="required_by">
 
-            <span class="close" onclick="close_popup(req_popup)">&times;</span>
-            <label for="mod_search">Link na mod:</label>
-            <textarea id="mod_search"></textarea>
-            <button onclick="submitVideo()" class="upload_user">Přidej</button>
+                <li>Maximum Carnage</li>
 
-        </section>
+            </article>
+
+        </article>
+
+    </section>
+
+    <section class="popup" id="req_popup" style="display: none;">
+
+        <span class="close" onclick="close_popup(req_popup)">&times;</span>
+        <label for="mod_search">Link na mod:</label>
+        <textarea id="mod_search"></textarea>
+        <button class="upload_user" onclick="submitVideo()">Přidej</button>
+
+    </section>
 
 </main>
 
@@ -279,5 +278,5 @@
     <p>&copy; 2023 Neksus. Práva nevyhrazena :(</p>
 </footer>
 </body>
-    <script src="/js/modDetails.js"></script>
+<script src="/js/modDetails.js"></script>
 </html>

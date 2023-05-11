@@ -40,6 +40,10 @@ public class CommentService {
         return commentDAO.updateComment(comment);
     }
 
+    public List<Comment> getCommentsByModId(Long modId) {
+        return commentDAO.getCommentsByModId(modId);
+    }
+
     public int deleteComment(Long commentId) {
         return commentDAO.deleteComment(commentId);
     }

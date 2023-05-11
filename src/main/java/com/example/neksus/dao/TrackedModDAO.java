@@ -15,7 +15,7 @@ public class TrackedModDAO {
     private final RowMapper<TrackedMod> trackedModRowMapper = (resultSet, i) -> {
         TrackedMod trackedMod = new TrackedMod();
         trackedMod.setId(resultSet.getLong("id"));
-        trackedMod.setUserId(resultSet.getLong("user_id"));
+        trackedMod.setUserId(resultSet.getString("user_id"));
         trackedMod.setModId(resultSet.getLong("mod_id"));
         return trackedMod;
     };
