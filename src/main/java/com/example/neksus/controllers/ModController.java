@@ -1,11 +1,17 @@
 package com.example.neksus.controllers;
 
+import com.example.neksus.models.Image;
 import com.example.neksus.models.Mod;
+import com.example.neksus.models.User;
 import com.example.neksus.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ModController {
@@ -19,9 +25,10 @@ public class ModController {
     private final CommentService commentService;
     private final TrackedModService trackedModService;
     private final UserService userService;
+    private final ImageService imageService;
 
     @Autowired
-    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService, CommentService commentService, TrackedModService trackedModService, UserService userService) {
+    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService, CommentService commentService, TrackedModService trackedModService, UserService userService, ImageService imageService) {
         this.modService = modService;
         this.gameService = gameService;
         this.changelogsService = changelogsService;
@@ -31,11 +38,24 @@ public class ModController {
         this.commentService = commentService;
         this.trackedModService = trackedModService;
         this.userService = userService;
+        this.imageService = imageService;
     }
 
     @RequestMapping("/games/{gameId}")
     public String getModsByGameId(@PathVariable("gameId") Long gameId, Model model) {
-        model.addAttribute("mods", modService.getModsByGameId(gameId));
+        List<Mod> mods = modService.getModsByGameId(gameId);
+        model.addAttribute("mods", mods);
+        List<Image> images = new ArrayList<>();
+        List<User> authors = new ArrayList<>();
+        for (Mod mod: mods) {
+            Optional<User> optional = userService.findByEmail(mod.getAuthor());
+            if (optional.isPresent()){
+                authors.add(optional.get());
+            }else continue;
+            images.add(imageService.getImageById(Long.parseLong(mod.getThumbnailImageId())));
+        }
+        model.addAttribute("images", images);
+        model.addAttribute("authors",authors);
         return "mods";
     }
 
