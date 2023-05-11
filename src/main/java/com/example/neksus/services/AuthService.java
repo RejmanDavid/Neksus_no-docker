@@ -49,4 +49,8 @@ public class AuthService {
         }
         return Collections.emptyList();
     }
+
+    public Optional<User> findUserByEmail(String email) {
+        return userDAO.findByEmail(email);
+    }
 }

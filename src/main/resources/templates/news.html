@@ -25,7 +25,7 @@
 <main>
     <article id="news_top">
         <h1>Novinky</h1>
-        <button class="upload_author_only" id="edit_news" onclick="redirect()">Přidat novou novinku</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_news" onclick="redirect()">Přidat novinku</button>
     </article>
     <section id="global_news">
         <section th:each="newsItem : ${news}">

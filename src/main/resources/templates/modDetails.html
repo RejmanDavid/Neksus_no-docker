@@ -22,13 +22,13 @@
 <main id="mod">
 
     <article id="top1">
+        <h1 th:text="${mod.modName}"></h1>
 
-        <h2><a href="/"> Index </a> / <a href="/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
-        <button class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
+        <h2><a href="../../index.html"> Index </a> / <a href="../skyrim_mods.html">Skyrim</a> / SkyUI</h2>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
 
-        <h4>Uploadnuto uživatelem <a href="../../Users/schlangster.html"
-                                     th:text="${mod.author}">mod.author</a> <span
-                th:text="${'dne: ' + mod.datePublished}"></span></h4>
+        <b th:text="${'Author: ' + author.username}">mod.author</b> <span
+                th:text="${'Dne: ' + mod.datePublished}"></span>
     </article>
 
     <article id="top2">
