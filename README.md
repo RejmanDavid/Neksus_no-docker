@@ -8,12 +8,8 @@ Před spuštěním
 Instrukce
 
 - aktualizuj maven dependencies
-- spusť src/main/java/com.example.demo/DemoApplication
+- spusť src/main/java/com.example.neksus/NeksusApplication
 - otevři si libovolný prohlížeč
 - localhost:8080
-    - /hello
-        - jednoduchej hello world test
-        - ?name=...
-            - GET request
-    - /db
-        - napojí na databázi a vypíše prvního zaměstnance
+
+složka web není v aplikaci využívána.
