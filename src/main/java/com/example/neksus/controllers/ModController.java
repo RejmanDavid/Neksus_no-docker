@@ -4,11 +4,16 @@ import com.example.neksus.models.Image;
 import com.example.neksus.models.Mod;
 import com.example.neksus.models.User;
 import com.example.neksus.services.*;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -88,14 +93,22 @@ public class ModController {
 
     //recieves mod information from user and recirects them back to index
     @PostMapping("/mods/create")
-    public String createMod(@ModelAttribute Mod mod, @RequestParam("gameId") Long gameId, Model model) {
+    public String createMod(@ModelAttribute Mod mod, @RequestParam("gameId") Long gameId, @RequestPart("thumbnail") MultipartFile file, Model model) {
         mod.setGameId(gameId); // set the gameId to the mod
+
+        try {
+            file.transferTo(new File("E:\\IntelliJ Idea\\IntelliJ IDEA Community Edition 2022.3\\projects\\Finally\\demo\\"+file.getOriginalFilename()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        /*todo re-add when fixed
         boolean isModAdded = modService.addMod(mod);
         if (isModAdded) {
             model.addAttribute("message", "Mod created successfully!");
         } else {
             model.addAttribute("message", "Error creating mod. Please try again.");
-        }
+        }*/
         return "redirect:/";
     }
 

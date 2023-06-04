@@ -24,20 +24,19 @@
 </header>
 
 <main>
-    <h1>Vytvoř nový mod:</h1>
-    <form method="post" th:action="@{/mods/create}">
+    <h1>Create new mod:</h1>
+    <form method="post" th:action="@{/mods/create}" enctype="multipart/form-data">
         <input name="author" th:value="${#authentication.name}" type="hidden"/>
-        <label for="modName">Název modu: </label>
-        <input id="modName" name="modName" required type="text"/>
+        <label for="modName">Mod Name: </label>
+        <input id="modName" name="modName" placeholder="My Amazing mod" required type="text"/>
         <br>
-        <label for="thumbnail">Úvodní obrázek:</label>
-        <input type="file" id="thumbnail" value="Úvodní obrázek" accept="image/*">
+        <label for="thumbnail">Initial image:</label>
+        <input type="file" id="thumbnail" name="thumbnail" value="Thumbnail" accept="image/*">
         <br>
-        <textarea id="edit_headline">Úvodní text</textarea>
+        <label for="modName">Mod Description: </label>
+        <textarea id="edit_description" placeholder="My amazing mod adds..." name="description" required></textarea>
         <br>
-        <textarea id="edit_description" name="description" required>Popis</textarea>
-        <br>
-        <label for="gameId">Game</label>
+        <label for="gameId">Game:</label>
         <select id="gameId" name="gameId" required>
             <option disabled selected value="">Select a game</option>
             <option th:each="game : ${games}" th:text="${game.name}" th:value="${game.id}"></option>

@@ -40,9 +40,14 @@ public class ModDAO {
         return jdbcTemplate.queryForObject(sql, modRowMapper, modId);
     }
 
-    public boolean insertMod(Mod mod) {
+    /*public boolean insertMod(Mod mod) {
         String sql = "INSERT INTO N_MOD (MOD_ID, MOD_NAME, DESCRIPTION, AUTHOR, GAME_ID, DATE_PUBLISHED, THUMBNAIL_IMAGE_ID, TRACK_COUNT) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), 1, 0);
+        return rowsAffected > 0;
+    }*/
+    public boolean insertMod(Mod mod) {
+        String sql = "EXECUTE N_MODPUBLISH (?, ?, ?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, mod.getDescription(),mod.getModName(),mod.getAuthor());
         return rowsAffected > 0;
     }
 

@@ -13,3 +13,8 @@ Instrukce
 - localhost:8080
 
 složka web není v aplikaci využívána.
+
+Loginy:
+
+- moderátor (admin@neksus.com; AdminPassword123)
+- uživatel (schlangster@gmail.com; UserPassword123)
