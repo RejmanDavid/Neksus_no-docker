@@ -31,9 +31,10 @@ public class ModController {
     private final TrackedModService trackedModService;
     private final UserService userService;
     private final ImageService imageService;
+    private final FileSaveService fileSaveService;
 
     @Autowired
-    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService, CommentService commentService, TrackedModService trackedModService, UserService userService, ImageService imageService) {
+    public ModController(ModService modService, GameService gameService, ChangelogsService changelogsService, FilesService filesService, NewsService newsService, VideoService videoService, CommentService commentService, TrackedModService trackedModService, UserService userService, ImageService imageService, FileSaveService fileSaveService) {
         this.modService = modService;
         this.gameService = gameService;
         this.changelogsService = changelogsService;
@@ -44,6 +45,7 @@ public class ModController {
         this.trackedModService = trackedModService;
         this.userService = userService;
         this.imageService = imageService;
+        this.fileSaveService = fileSaveService;
     }
 
     //prepares mods, their thumbnails and authors and returns view "mods"
@@ -96,19 +98,17 @@ public class ModController {
     public String createMod(@ModelAttribute Mod mod, @RequestParam("gameId") Long gameId, @RequestPart("thumbnail") MultipartFile file, Model model) {
         mod.setGameId(gameId); // set the gameId to the mod
 
-        try {
-            file.transferTo(new File("E:\\IntelliJ Idea\\IntelliJ IDEA Community Edition 2022.3\\projects\\Finally\\demo\\"+file.getOriginalFilename()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        /*todo re-add when fixed
+        if (fileSaveService.saveFile(file)){
+            /*todo re-add when fixed
         boolean isModAdded = modService.addMod(mod);
         if (isModAdded) {
             model.addAttribute("message", "Mod created successfully!");
         } else {
             model.addAttribute("message", "Error creating mod. Please try again.");
         }*/
+        }
+
+
         return "redirect:/";
     }
 
