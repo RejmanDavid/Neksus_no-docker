@@ -97,15 +97,12 @@ public class ModController {
     @PostMapping("/mods/create")
     public String createMod(@ModelAttribute Mod mod, @RequestParam("gameId") Long gameId, @RequestPart("thumbnail") MultipartFile file, Model model) {
         mod.setGameId(gameId); // set the gameId to the mod
+        String imagePath = fileSaveService.saveFile(file);
 
-        if (fileSaveService.saveFile(file)){
-            /*todo re-add when fixed
-        boolean isModAdded = modService.addMod(mod);
-        if (isModAdded) {
+        if (imagePath != null && modService.addMod(mod, imagePath)){
             model.addAttribute("message", "Mod created successfully!");
-        } else {
+        }else {
             model.addAttribute("message", "Error creating mod. Please try again.");
-        }*/
         }
 
 

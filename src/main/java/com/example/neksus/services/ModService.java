@@ -24,8 +24,8 @@ public class ModService {
         return modDAO.getModById(modId);
     }
 
-    public boolean addMod(Mod mod) {
-        return modDAO.insertMod(mod);
+    public boolean addMod(Mod mod, String imagePath) {
+        return modDAO.insertMod(mod, imagePath);
     }
 
     public boolean updateMod(Mod mod) {

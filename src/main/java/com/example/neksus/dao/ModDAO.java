@@ -45,10 +45,10 @@ public class ModDAO {
         int rowsAffected = jdbcTemplate.update(sql, mod.getModId(), mod.getModName(), mod.getDescription(), mod.getAuthor(), mod.getGameId(), mod.getDatePublished(), 1, 0);
         return rowsAffected > 0;
     }*/
-    public boolean insertMod(Mod mod) {
-        String sql = "EXECUTE N_MODPUBLISH (?, ?, ?, ?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, mod.getDescription(),mod.getModName(),mod.getAuthor());
-        return rowsAffected > 0;
+    public boolean insertMod(Mod mod, String imagePath) {
+        String sql = "{ call N_MODPUBLISH (?, ?, ?, ?, ?) }";
+        jdbcTemplate.update(sql,mod.getDescription(),mod.getModName(),mod.getAuthor(),imagePath,mod.getGameId());
+        return true;
     }
 
     public boolean updateMod(Mod mod) {
