@@ -10,9 +10,9 @@
     <nav>
         <img src="/img/17085531.png">
         <ul>
-            <li><a href="/">Hry</a></li>
-            <li><a href="/news">Novinky</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/">Games</a></li>
+            <li><a href="/news">News</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
@@ -27,7 +27,7 @@
     <article id="top1">
 
         <h2><a href="/"> Index </a> / <a href="/games/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
-        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Upravit Mod</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Edit Mod</button>
 
         <h4 th:text="${'Author: ' + author.username}">mod.author</h4> <span
                 th:text="${'Dne: ' + mod.datePublished}"></span>
@@ -37,9 +37,9 @@
 
         <h1 th:text="${mod.modName}"></h1>
         <article id="track">
-            <h3 th:text="${'Počet sledování: ' + mod.trackCount}"></h3>
+            <h3 th:text="${'Follows: ' + mod.trackCount}"></h3>
             <form action="#" method="post" th:action="@{/mods/{modId}/follow(modId=${mod.modId})}">
-                <input sec:authorize="isAuthenticated()" type="submit" value="SLEDOVAT"/>
+                <input sec:authorize="isAuthenticated()" type="submit" value="Track"/>
             </form>
         </article>
     </article>
@@ -49,14 +49,14 @@
     </article>
 
     <article id="nav2">
-        <button onclick="description()">Popis</button>
+        <button onclick="description()">Description</button>
         <button onclick="changelog()">Changelog</button>
-        <button onclick="files()">Soubory</button>
-        <button onclick="news()">Novinky</button>
-        <button onclick="user_images()">Uživatelské obrázky</button>
-        <button onclick="videos()">Videa</button>
-        <button onclick="comments()">Komentáře</button>
-        <button onclick="dependecny()">Požadavky</button>
+        <button onclick="files()">Files</button>
+        <button onclick="news()">News</button>
+        <button onclick="user_images()">User Images</button>
+        <button onclick="videos()">Videos</button>
+        <button onclick="comments()">Comments</button>
+        <button onclick="dependecny()">Dependencies</button>
     </article>
 
     <section id="description">
@@ -65,8 +65,8 @@
 
     <section id="changelog" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">Přidat novou
-            aktualizaci
+        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">
+            Add update
         </button>
 
         <article class="list" id="changes_list">
@@ -87,24 +87,24 @@
     <section class="popup" id="changelog_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(changelog_popup)">&times;</span>
-        <label for="version">Verze:</label>
+        <label for="version">Version:</label>
         <input id="version" type="text">
-        <label for="changelog_text">Komentář:</label>
+        <label for="changelog_text">Comment:</label>
         <textarea id="changelog_text"></textarea>
-        <button class="upload_user" onclick="submitChangelog()">Přidej</button>
+        <button class="upload_user" onclick="submitChangelog()">Add</button>
 
     </section>
 
     <section id="files" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Přidat soubor</button>
+        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_file_to_mod" onclick="show_popup(file_popup)">Add file</button>
 
         <article class="list" id="files_list">
 
             <article class="souboros" th:each="file : ${files}">
                 <h3 th:text="${file.description}"></h3>
                 <h3 th:text="${file.version}"></h3>
-                <p>Vydáno: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
+                <p>Released: <span th:text="${#dates.format(file.releaseDate, 'yyyy-MM-dd')}"></span></p>
                 <a th:href="${file.filePath}" target="_blank"><button>DOWNLOAD</button></a>
             </article>
 
@@ -115,24 +115,24 @@
     <section class="popup" id="file_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(file_popup)">&times;</span>
-        <label for="file">Soubor:</label>
+        <label for="file">File:</label>
         <input id="file" type="file">
-        <label for="file_text">Název:</label>
+        <label for="file_text">Name:</label>
         <input id="file_text" type="text">
-        <button class="upload_user" onclick="submitFile()">Přidej</button>
+        <button class="upload_user" onclick="submitFile()">Add</button>
 
     </section>
 
     <section id="news" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Přidat novinku</button>
+        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_news_to_mod" onclick="show_popup(news_popup)">Add news</button>
 
         <article class="list" id="list_of_news">
 
             <ul class="novinka" th:each="newsItem : ${news}">
                 <article class="headline_comment">
                     <h4 th:text="${newsItem.headline}"></h4>
-                    <p>Datum přidání: <span th:text="${newsItem.releaseDate}"></span></p>
+                    <p>Release date: <span th:text="${newsItem.releaseDate}"></span></p>
                     <p>Author: <span th:text="${newsItem.author}"></span></p>
                 </article>
                 <li th:text="${newsItem.description}"></li>
@@ -149,13 +149,13 @@
         <input id="news_headline" type="text">
         <label for="news_text">Text:</label>
         <textarea id="news_text"></textarea>
-        <button class="upload_user" onclick="submitNews()">Přidej</button>
+        <button class="upload_user" onclick="submitNews()">Add</button>
 
     </section>
 
     <section id="user_images" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload nového obrázku
+        <button sec:authorize="isAuthenticated()" class="upload_user" id="upload_mod_button" onclick="show_popup(image_popup)">Upload new image
         </button>
 
         <article class="list" id="list_of_images">
@@ -167,15 +167,15 @@
     <section class="popup" id="image_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(image_popup)">&times;</span>
-        <label for="image_link">Link na obrázek:</label>
+        <label for="image_link">Link to image:</label>
         <textarea id="image_link"></textarea>
-        <button class="upload_user" onclick="submitImage()">Přidej</button>
+        <button class="upload_user" onclick="submitImage()">Add</button>
 
     </section>
 
     <section id="videos" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload nového videa</button>
+        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="new_video" onclick="show_popup(video_popup)">Upload new video</button>
 
         <div class="list" id="video_list">
             <article th:each="video : ${videos}">
@@ -185,32 +185,22 @@
         </div>
 
     </section>
-
-    <!--        <section id="video_popup" class="popup" style="display: none;">-->
-
-    <!--            <span class="close" onclick="close_popup(video_popup)">&times;</span>-->
-    <!--            <label for="video_link">Link na video:</label>-->
-    <!--            <textarea id="video_link"></textarea>-->
-    <!--            <button onclick="submitVideo()" class="upload_user">Přidej</button>-->
-
-    <!--        </section>-->
-
     <section class="popup" id="video_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(video_popup)">&times;</span>
 
-        <label for="video_link">Link na video:</label>
+        <label for="video_link">Link to video:</label>
         <input id="video_link" required type="text"/>
 
         <input id="mod_id" th:value="${mod.modId}" type="hidden" value=""/>
 
-        <button class="upload_user" onclick="submitVideo()">Přidej</button>
+        <button class="upload_user" onclick="submitVideo()">Add</button>
 
     </section>
 
     <section id="comments" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Přidat komentář</button>
+        <button sec:authorize="isAuthenticated()" class="upload_user" id="add_comment" onclick="show_popup(comment_popup)">Add comment</button>
 
         <article class="list" id="comment_list">
 
@@ -238,20 +228,20 @@
 
     <section id="dependecny" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Přidat REQ</button>
+        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Add dependency</button>
 
         <article class="list" id="req_list">
 
-            <h3>List vyžadovaných modů:</h3>
+            <h3>Mod depends on:</h3>
 
             <article id="needed_mod_list">
 
-                <li>Unoficial Skyrim Patch</li>
+                <li>Unofficial Skyrim Patch</li>
                 <li>SKSE</li>
 
             </article>
 
-            <h3>List modů vyžadující tento:</h3>
+            <h3>Other mods depending on this:</h3>
 
             <article id="required_by">
 
@@ -266,9 +256,9 @@
     <section class="popup" id="req_popup" style="display: none;">
 
         <span class="close" onclick="close_popup(req_popup)">&times;</span>
-        <label for="mod_search">Link na mod:</label>
+        <label for="mod_search">Link to mod:</label>
         <textarea id="mod_search"></textarea>
-        <button class="upload_user" onclick="submitVideo()">Přidej</button>
+        <button class="upload_user" onclick="submitVideo()">Add</button>
 
     </section>
 

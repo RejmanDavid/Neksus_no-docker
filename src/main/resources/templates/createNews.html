@@ -10,9 +10,9 @@
     <nav>
         <img src="/img/17085531.png">
         <ul>
-            <li><a href="/">Hry</a></li>
-            <li><a href="/news">Novinky</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/">Games</a></li>
+            <li><a href="/news">News</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
@@ -25,7 +25,7 @@
 
 <main class="login-container">
     <div class="login-section">
-    <h1>Vytvoř novinku:</h1>
+    <h1>Post News:</h1>
     <form method="post" th:action="@{/news/create}">
         <input name="author" th:value="${#authentication.name}" type="hidden"/>
         <label for="headline">Headline:</label>

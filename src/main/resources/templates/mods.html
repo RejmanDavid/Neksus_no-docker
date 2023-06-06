@@ -10,9 +10,9 @@
     <nav>
         <img src="/img/17085531.png">
         <ul>
-            <li><a href="/">Hry</a></li>
-            <li><a href="/news">Novinky</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/">Games</a></li>
+            <li><a href="/news">News</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
@@ -23,7 +23,7 @@
     </nav>
 </header>
 <main>
-    <h1>Mody:</h1>
+    <h1>Mods:</h1>
     <section id="mod_list">
             <a class="mod" th:each="mods,iter : ${mods}"  th:href="@{'/games/' + ${mods.gameId} + '/' + ${mods.modId}}">
                 <img th:src="${images[iter.index].imagePath}"/>

@@ -10,9 +10,9 @@
     <nav>
         <img src="/img/17085531.png">
         <ul>
-            <li><a href="/">Hry</a></li>
-            <li><a href="/news">Novinky</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/">Games</a></li>
+            <li><a href="/news">News</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
@@ -25,19 +25,19 @@
 <main class="login-container">
     <div class="login-section">
         <form method="post" th:action="@{/register}" th:object="${user}">
-            <label for="username">Přezdívka:</label>
+            <label for="username">Nickname:</label>
             <input th:field="*{username}" type="text" id="username" name="username" required><br>
 
             <label for="email">Email:</label>
             <input th:field="*{email}" type="email" id="email" name="email" required><br>
 
-            <label for="password">Heslo:</label>
+            <label for="password">Password:</label>
             <input th:field="*{password}" type="password" id="password" name="password" required><br>
 
-            <label for="password">Potvrď heslo:</label>
+            <label for="password">Confirm password:</label>
             <input type="password" id="confirm" name="confirmPassword" required><br>
 
-            <button type="submit" class="submit">REGISTROVAT</button>
+            <button type="submit" class="submit">Register</button>
         </form>
     </div>
 </main>

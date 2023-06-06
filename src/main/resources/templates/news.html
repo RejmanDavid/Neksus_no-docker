@@ -10,9 +10,9 @@
     <nav>
         <img src="/img/17085531.png">
         <ul>
-            <li><a href="/">Hry</a></li>
-            <li><a href="/news">Novinky</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile">Profil</a></li>
+            <li><a href="/">Games</a></li>
+            <li><a href="/news">News</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/create">Create</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
@@ -24,8 +24,8 @@
 </header>
 <main>
     <article id="news_top">
-        <h1>Novinky</h1>
-        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_news" onclick="redirect()">Přidat novinku</button>
+        <h1>News</h1>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_news" onclick="redirect()">Post news</button>
     </article>
     <section id="global_news">
         <section th:each="newsItem : ${news}">
