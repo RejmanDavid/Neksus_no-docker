@@ -57,10 +57,6 @@ public class FilesService {
             return false;
         }
 
-        if (file.getReleaseDate() == null) {
-            return false;
-        }
-
         if (file.getVersion() == null || file.getVersion().trim().isEmpty()) {
             return false;
         }

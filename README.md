@@ -17,4 +17,4 @@ složka web není v aplikaci využívána.
 Loginy:
 
 - moderátor (admin@neksus.com; AdminPassword123)
-- uživatel (schlangster@gmail.com; UserPassword123)
+- uživatel (schlang.ster@gmail.com; UserPassword123)

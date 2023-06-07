@@ -44,8 +44,8 @@ public class FilesDAO {
     }
 
     public boolean insertFile(Files file) {
-        String sql = "INSERT INTO N_FILE (FILE_ID, MOD_ID, DESCRIPTION, FILE_PATH, RELEASE_DATE, VERSION) VALUES (?, ?, ?, ?, ?, ?)";
-        int rowsAffected = jdbcTemplate.update(sql, file.getFileId(), file.getModId(), file.getDescription(), file.getFilePath(), file.getReleaseDate(), file.getVersion());
+        String sql = "INSERT INTO N_FILE (MOD_ID, DESCRIPTION, FILE_PATH, VERSION) VALUES (?, ?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, file.getModId(), file.getDescription(), file.getFilePath(), file.getVersion());
         return rowsAffected > 0;
     }
 

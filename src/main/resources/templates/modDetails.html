@@ -26,11 +26,10 @@
 
     <article id="top1">
 
-        <h2><a href="/"> Index </a> / <a href="/games/1">Skyrim</a> / <a th:text="${mod.modName}"></a></h2>
-        <button sec:authorize="hasRole('ROLE_ADMIN')" class="upload_author_only" id="edit_mod" onclick="move()">Edit Mod</button>
+        <h2><a href="/"> Games </a> / <a href="/games/1" th:text="${game.name}"></a> / <a th:text="${mod.modName}"></a></h2>
 
-        <h4 th:text="${'Author: ' + author.username}">mod.author</h4> <span
-                th:text="${'Dne: ' + mod.datePublished}"></span>
+        <h4 th:text="${'Author: ' + author.username}"></h4> <span
+                th:text="${'Released: ' + mod.datePublished}"></span>
     </article>
 
     <article id="top2">
@@ -56,7 +55,6 @@
         <button onclick="user_images()">User Images</button>
         <button onclick="videos()">Videos</button>
         <button onclick="comments()">Comments</button>
-        <button onclick="dependecny()">Dependencies</button>
     </article>
 
     <section id="description">
@@ -65,7 +63,7 @@
 
     <section id="changelog" style="display: none;">
 
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">
+        <button th:if="${#authentication.name} == ${author.email} or ${isAdmin} == 'Y'" class="upload_author_only" id="add_new_changelog" onclick="show_popup(changelog_popup)">
             Add update
         </button>
 
@@ -113,14 +111,20 @@
     </section>
 
     <section class="popup" id="file_popup" style="display: none;">
-
-        <span class="close" onclick="close_popup(file_popup)">&times;</span>
-        <label for="file">File:</label>
-        <input id="file" type="file">
-        <label for="file_text">Name:</label>
-        <input id="file_text" type="text">
-        <button class="upload_user" onclick="submitFile()">Add</button>
-
+        <form method="post" th:action="@{/mods/filepost}" enctype="multipart/form-data">
+            <input name="mod" th:value="${mod.modId}" type="hidden"/>
+            <input name="game" th:value="${mod.gameId}" type="hidden"/>
+            <label for="uploadedFile">File:</label>
+            <input type="file" id="uploadedFile" name="uploadedFile" value="uploadedFile" required accept="application/*">
+            <br>
+            <label for="fileDescription">Description: </label>
+            <textarea id="fileDescription" name="description" placeholder="This file is the..." required></textarea>
+            <br>
+            <label for="fileVersion">Version: </label>
+            <input id="fileVersion" placeholder="1.0.0" name="version" required type="text"/>
+            <br>
+            <input class="submit" type="submit" value="Post File"/>
+        </form>
     </section>
 
     <section id="news" style="display: none;">
@@ -223,42 +227,6 @@
         <input id="author" name="author" th:value="${#authentication.name}" type="hidden"/>
         <textarea id="comment_text"></textarea>
         <button class="submit" onclick="submitComment()">Submit Comment</button>
-
-    </section>
-
-    <section id="dependecny" style="display: none;">
-
-        <button sec:authorize="isAuthenticated()" class="upload_author_only" id="add_requirement" onclick="show_popup(req_popup)">Add dependency</button>
-
-        <article class="list" id="req_list">
-
-            <h3>Mod depends on:</h3>
-
-            <article id="needed_mod_list">
-
-                <li>Unofficial Skyrim Patch</li>
-                <li>SKSE</li>
-
-            </article>
-
-            <h3>Other mods depending on this:</h3>
-
-            <article id="required_by">
-
-                <li>Maximum Carnage</li>
-
-            </article>
-
-        </article>
-
-    </section>
-
-    <section class="popup" id="req_popup" style="display: none;">
-
-        <span class="close" onclick="close_popup(req_popup)">&times;</span>
-        <label for="mod_search">Link to mod:</label>
-        <textarea id="mod_search"></textarea>
-        <button class="upload_user" onclick="submitVideo()">Add</button>
 
     </section>
 
